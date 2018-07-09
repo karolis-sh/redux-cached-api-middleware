@@ -1,0 +1,16 @@
+{
+  "name": "redux-cached-api-middleware",
+  "version": "0.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:buz-zard/redux-cached-api-middleware.git",
+  "author": "Karolis Šarapnickis <pastas.k@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "cz-conventional-changelog": "^2.1.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}
