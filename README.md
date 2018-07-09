@@ -1,0 +1,1 @@
+# redux-cached-api-middleware
