@@ -1,3 +1,6 @@
 {
-  "extends": ["@k.sh/eslint-config"]
+  "extends": ["@k.sh/eslint-config"],
+  "env": {
+    "jest": true
+  }
 }

@@ -6,3 +6,7 @@
 node_modules
 package.json
 package-lock.json
+
+# Build products
+/lib
+/es
