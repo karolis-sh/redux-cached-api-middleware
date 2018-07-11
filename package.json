@@ -20,11 +20,11 @@
     "redux-api-middleware": "^2.0.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.0.0-beta.52",
-    "@babel/preset-env": "^7.0.0-beta.52",
     "@k.sh/eslint-config": "1.1.0",
-    "babel-core": "7.0.0-bridge.0",
+    "babel-core": "^6.26.3",
     "babel-jest": "^23.4.0",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
     "cz-conventional-changelog": "^2.1.0",
     "eslint": "^5.1.0",
     "eslint-config-airbnb": "17.0.0",
@@ -40,7 +40,7 @@
     "redux-api-middleware": "^2.0.0",
     "rimraf": "^2.6.2",
     "rollup": "^0.62.0",
-    "rollup-plugin-babel": "^4.0.0-beta.7",
+    "rollup-plugin-babel": "^3.0.7",
     "rollup-plugin-filesize": "^2.0.0",
     "rollup-plugin-peer-deps-external": "^2.2.0"
   },

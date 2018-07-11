@@ -12,11 +12,7 @@ export default {
   ],
   plugins: [
     peerDepsExternal(),
-    babel({
-      exclude: 'node_modules/**',
-      babelrc: false,
-      presets: [['@babel/preset-env', { modules: false, loose: true }]],
-    }),
+    babel({ exclude: 'node_modules/**' }),
     filesize(),
   ],
 };

@@ -1,13 +1,9 @@
 {
-  "presets": [
-    [
-      "@babel/preset-env",
-      {
-        "loose": true,
-        "targets": {
-          "node": "8"
-        }
-      }
-    ]
-  ]
+  "presets": [["env", { "loose": true, "modules": false, "targets": { "node": "8" } }]],
+  "plugins": ["transform-object-rest-spread"],
+  "env": {
+    "test": {
+      "presets": ["env"]
+    }
+  }
 }
