@@ -1,0 +1,17 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, sans-serif;
+}
+
+.demo {
+  margin: 2rem 10%;
+}
+
+.api-response {
+  background: #ededed;
+  padding: 1rem;
+  border-radius: 3px;
+  margin-top: 1rem;
+}

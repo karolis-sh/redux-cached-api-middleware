@@ -1,11 +1,15 @@
 # npm files
-/node_modules
+node_modules
 package-lock.json
 *.log*
 
-# Build products
+# Package build products
 /lib
 /es
+
+# Demo build products
+/.cache
+/dist
 
 # other
 .vscode
