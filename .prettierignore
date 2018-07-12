@@ -7,6 +7,10 @@ node_modules
 package.json
 package-lock.json
 
-# Build products
+# Package build products
 /lib
 /es
+
+# Demo build products
+/.cache
+/dist
