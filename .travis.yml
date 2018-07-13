@@ -6,4 +6,4 @@ node_js:
 cache:
   directories:
     - ~/.npm
-script: npm run qa
+script: npm run build && npm run qa
