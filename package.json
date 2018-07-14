@@ -7,7 +7,7 @@
   "main": "lib/index.js",
   "module": "es/index.js",
   "scripts": {
-    "build:demo": "cross-env NODE_ENV=demo parcel build demo/index.html --no-minify",
+    "build:demo": "cross-env NODE_ENV=demo parcel build demo/index.html --no-minify --public-url $([ \"$CI\" = \"true\" ] && echo /redux-cached-api-middleware || echo /)",
     "build:package": "rollup -c",
     "build": "run-s build:package build:demo",
     "clean": "rimraf es lib .cache dist",
