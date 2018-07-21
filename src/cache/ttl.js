@@ -8,7 +8,7 @@ export const shouldFetch = ({ state, strategy }) => {
   if (state && strategy) {
     if (state.fetching) return false;
     if (state.fetched) {
-      return state.timestamp + strategy.ttl >= Date.now();
+      return state.timestamp + strategy.ttl <= Date.now();
     }
   }
   return true;

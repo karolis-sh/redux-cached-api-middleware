@@ -22,7 +22,7 @@ describe('shouldFetch', () => {
   it('should not fetch if it has already fetched and TTL not reached', () => {
     expect(
       shouldFetch({
-        state: { fetched: true, timestamp: now - 101 },
+        state: { fetched: true, timestamp: now - 99 },
         strategy: buildStrategy({ ttl: 100 }),
       })
     ).toBe(false);
@@ -40,7 +40,7 @@ describe('shouldFetch', () => {
   it('should fetch if it has already fetched and TTL is exceeded', () => {
     expect(
       shouldFetch({
-        state: { fetched: true, timestamp: now - 99 },
+        state: { fetched: true, timestamp: now - 101 },
         strategy: buildStrategy({ ttl: 100 }),
       })
     ).toBe(true);
