@@ -1,6 +1,7 @@
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
-import filesize from 'rollup-plugin-filesize';
+import resolve from 'rollup-plugin-node-resolve';
 import babel from 'rollup-plugin-babel';
+import filesize from 'rollup-plugin-filesize';
 
 import pkg from './package.json';
 
@@ -12,7 +13,8 @@ export default {
   ],
   plugins: [
     peerDepsExternal(),
-    babel({ exclude: 'node_modules/**' }),
+    resolve(),
+    babel({ exclude: 'node_modules/**', plugins: ['external-helpers'] }),
     filesize(),
   ],
 };
