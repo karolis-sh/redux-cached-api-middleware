@@ -11,11 +11,21 @@ const persistConfig = {
   storage,
 };
 
+const persistanceNormalizer = store => next => action => {
+  const result = next(action);
+  if (action.type === 'persist/REHYDRATE') {
+    store.dispatch(cachedApi.actions.invalidateCache());
+  }
+  return result;
+};
+
 const store = createStore(
   persistCombineReducers(persistConfig, {
     [cachedApi.constants.NAME]: cachedApi.reducer,
   }),
-  composeWithDevTools(applyMiddleware(thunk, apiMiddleware))
+  composeWithDevTools(
+    applyMiddleware(thunk, apiMiddleware, persistanceNormalizer)
+  )
 );
 
 const persistor = persistStore(store);

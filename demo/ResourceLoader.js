@@ -2,8 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import ReactJson from 'react-json-view';
-
-import * as cachedApi from '../es';
+import * as cachedApi from 'redux-cached-api-middleware';
 
 class ResourceLoader extends React.Component {
   async componentDidMount() {
