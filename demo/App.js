@@ -1,6 +1,6 @@
 import React from 'react';
+import * as cachedApi from 'redux-cached-api-middleware';
 
-import * as cachedApi from '../es';
 import ResourceLoader from './ResourceLoader';
 
 export const init = () => {

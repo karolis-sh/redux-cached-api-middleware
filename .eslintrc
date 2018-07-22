@@ -7,6 +7,7 @@
   "parser": "babel-eslint",
   "rules": {
     "import/no-extraneous-dependencies": ["error", {"devDependencies": ["!src/*.js"]}],
+    "import/no-unresolved": [2, { "ignore": ["redux-cached-api-middleware"]}],
     "prefer-destructuring": [0]
   }
 }
