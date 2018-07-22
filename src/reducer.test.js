@@ -2,6 +2,69 @@ import reducer from './reducer';
 import * as types from './actionTypes';
 
 // =============================================================================
+describe('generic actions', () => {
+  const key = 'GET/stuff';
+  const otherState = { 'POST/stuff': { hello: 'world', fetching: false } };
+
+  it('should delete all key states with CLEAR_CACHE', () => {
+    expect(
+      reducer(
+        {
+          ...otherState,
+          [key]: {
+            fetching: true,
+            fetched: false,
+            error: false,
+            timestamp: null,
+            successPayload: null,
+            errorPayload: null,
+          },
+        },
+        { type: types.CLEAR_CACHE }
+      )
+    ).toEqual({});
+  });
+
+  it('should delete key state with CLEAR_CACHE', () => {
+    expect(
+      reducer(
+        {
+          ...otherState,
+          [key]: {
+            fetching: true,
+            fetched: false,
+            error: false,
+            timestamp: null,
+            successPayload: null,
+            errorPayload: null,
+          },
+        },
+        { type: types.CLEAR_CACHE, payload: key }
+      )
+    ).toEqual(otherState);
+  });
+
+  it('should remove key state when restored as fetching with INVALIDATE_CACHE', () => {
+    expect(
+      reducer(
+        {
+          ...otherState,
+          [key]: {
+            fetching: true,
+            fetched: false,
+            error: false,
+            timestamp: null,
+            successPayload: null,
+            errorPayload: null,
+          },
+        },
+        { type: types.INVALIDATE_CACHE }
+      )
+    ).toEqual(otherState);
+  });
+});
+
+// =============================================================================
 describe('FETCH_START', () => {
   const key = 'GET/stuff';
   const otherState = { 'POST/stuff': { hello: 'world' } };

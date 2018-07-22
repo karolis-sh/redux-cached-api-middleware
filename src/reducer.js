@@ -13,6 +13,27 @@ const DEFAULT_STATE = {};
 
 export default (state = DEFAULT_STATE, { type, payload, meta }) => {
   switch (type) {
+    case types.CLEAR_CACHE: {
+      if (payload && state[payload]) {
+        const newState = { ...state };
+        delete newState[payload];
+        return newState;
+      }
+      return DEFAULT_STATE;
+    }
+
+    case types.INVALIDATE_CACHE: {
+      const invalidStateKeys = Object.keys(state).filter(
+        item => state[item].fetching
+      );
+      if (invalidStateKeys.length) {
+        const newState = { ...state };
+        invalidStateKeys.forEach(item => delete newState[item]);
+        return newState;
+      }
+      return state;
+    }
+
     case types.FETCH_START: {
       const key = meta.cache.key;
       return {

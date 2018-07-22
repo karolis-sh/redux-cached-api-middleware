@@ -5,6 +5,8 @@ import config from './config';
 import * as types from './actionTypes';
 import * as selectors from './selectors';
 
+export const invalidateCache = () => ({ type: types.INVALIDATE_CACHE });
+
 export const callAPI = ({ cache: cacheOption, ...restOptions }) => async (
   dispatch,
   getState
