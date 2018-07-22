@@ -1,5 +1,7 @@
 export const NAME = '@RCAM';
 export const CACHE_TYPES = {
   SIMPLE: 'SIMPLE',
+  SIMPLE_SUCCESS: 'SIMPLE_SUCCESS',
   TTL: 'TTL',
+  TTL_SUCCESS: 'TTL_SUCCESS',
 };

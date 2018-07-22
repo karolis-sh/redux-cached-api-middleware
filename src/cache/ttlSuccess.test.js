@@ -1,14 +1,14 @@
 import { validateCacheModule } from '../__tests__/utils';
-import * as ttl from './ttl';
+import * as ttlSuccess from './ttlSuccess';
 
-const { shouldFetch, buildStrategy } = ttl;
+const { shouldFetch, buildStrategy } = ttlSuccess;
 
 describe('shouldFetch', () => {
   const now = Date.now();
   jest.spyOn(Date, 'now').mockImplementation(() => now);
 
   it('should be a valid module', () => {
-    validateCacheModule(ttl);
+    validateCacheModule(ttlSuccess);
   });
 
   it('should fetch if no state or strategy', () => {
@@ -48,6 +48,15 @@ describe('shouldFetch', () => {
     expect(
       shouldFetch({
         state: { fetched: true, timestamp: now - 101 },
+        strategy: buildStrategy({ ttl: 100 }),
+      })
+    ).toBe(true);
+  });
+
+  it('should fetch if it has already fetched, TTL not reached, but last response was error', () => {
+    expect(
+      shouldFetch({
+        state: { fetched: true, timestamp: now - 99, error: true },
         strategy: buildStrategy({ ttl: 100 }),
       })
     ).toBe(true);

@@ -1,11 +1,11 @@
 import { validateCacheModule } from '../__tests__/utils';
-import * as simple from './simple';
+import * as simpleSuccess from './simpleSuccess';
 
-const { shouldFetch } = simple;
+const { shouldFetch } = simpleSuccess;
 
 describe('shouldFetch', () => {
   it('should be a valid module', () => {
-    validateCacheModule(simple);
+    validateCacheModule(simpleSuccess);
   });
 
   it('should fetch if no state', () => {
@@ -19,5 +19,9 @@ describe('shouldFetch', () => {
 
   it('should not fetch if it has already fetched', () => {
     expect(shouldFetch({ state: { fetched: true } })).toBe(false);
+  });
+
+  it('should fetch if it has already fetched but was error', () => {
+    expect(shouldFetch({ state: { fetched: true, error: true } })).toBe(true);
   });
 });

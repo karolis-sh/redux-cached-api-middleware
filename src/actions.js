@@ -1,6 +1,6 @@
 import { RSAA } from 'redux-api-middleware';
 
-import cache from './cache/index';
+import cache from './cache';
 import config from './config';
 import * as types from './actionTypes';
 import * as selectors from './selectors';
