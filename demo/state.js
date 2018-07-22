@@ -7,7 +7,7 @@ import storage from 'redux-persist/lib/storage';
 import * as cachedApi from 'redux-cached-api-middleware';
 
 const persistConfig = {
-  key: 'test',
+  key: 'demo-1',
   storage,
 };
 
