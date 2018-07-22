@@ -10,6 +10,7 @@ package-lock.json
 # Package build products
 /lib
 /es
+/coverage
 
 # Demo build products
 /.cache

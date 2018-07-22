@@ -10,7 +10,7 @@
     "build:demo": "cross-env NODE_ENV=demo parcel build demo/index.html --no-minify --public-url $([ \"$CI\" = \"true\" ] && echo /redux-cached-api-middleware || echo /)",
     "build:package": "rollup -c",
     "build": "run-s build:package build:demo",
-    "clean": "rimraf es lib .cache dist",
+    "clean": "rimraf es lib .cache dist coverage",
     "develop:demo": "cross-env NODE_ENV=demo parcel demo/index.html",
     "develop:package": "yarn build:package -w",
     "develop": "concurrently 'yarn develop:package' 'yarn develop:demo'",
@@ -90,7 +90,6 @@
     "setupFiles": [
       "<rootDir>/src/__tests__/__setup__/fetch.js"
     ],
-    "coverageDirectory": "./coverage/",
     "collectCoverage": true
   }
 }
