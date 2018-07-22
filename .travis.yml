@@ -6,7 +6,12 @@ node_js:
 cache:
   directories:
     - ~/.npm
-script: npm run build && npm run qa
+install:
+  - npm install -g codecov
+script:
+  - npm run build
+  - npm run qa
+  - codecov  --token=$CODECOV_TOKEN
 # Demo deployment
 deploy:
   provider: pages

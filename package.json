@@ -89,6 +89,8 @@
     "testRegex": "src/.+\\.test\\.js$",
     "setupFiles": [
       "<rootDir>/src/__tests__/__setup__/fetch.js"
-    ]
+    ],
+    "coverageDirectory": "./coverage/",
+    "collectCoverage": true
   }
 }
