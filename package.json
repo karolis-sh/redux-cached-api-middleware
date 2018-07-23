@@ -38,6 +38,7 @@
     "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
+    "codecov": "^3.0.4",
     "concurrently": "^3.6.0",
     "cross-env": "^5.2.0",
     "cz-conventional-changelog": "^2.1.0",
@@ -90,6 +91,10 @@
     "setupFiles": [
       "<rootDir>/src/__tests__/__setup__/fetch.js"
     ],
-    "collectCoverage": true
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "src/**/*.js",
+      "!src/__tests__/**/*"
+    ]
   }
 }
