@@ -4,12 +4,14 @@ node_js:
   - '9'
   - '8'
 cache:
+  yarn: true
   directories:
-    - ~/.npm
+    - node_modules
 script:
-  - npm run build
-  - npm run qa
-# Demo deployment
+  - yarn build
+  - yarn qa
+after_success:
+  - travis-deploy-once && codecov
 deploy:
   provider: pages
   skip-cleanup: true
@@ -18,6 +20,3 @@ deploy:
   on:
     branch: master
   local-dir: dist
-after_success:
-  - npm install -g travis-deploy-once
-  - travis-deploy-once && codecov
