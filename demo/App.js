@@ -4,13 +4,13 @@ import * as cachedApi from 'redux-cached-api-middleware';
 import ResourceLoader from './ResourceLoader';
 
 export const init = () => {
-  cachedApi.config.setDefaultEvent({
+  cachedApi.config.DEFAULT_EVENT = {
     method: 'GET',
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
     },
-  });
+  };
 };
 
 function App() {

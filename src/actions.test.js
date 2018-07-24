@@ -76,14 +76,14 @@ describe('callAPI base features', () => {
   });
 
   it('should re-use default event', async () => {
-    config.setDefaultEvent({
+    config.DEFAULT_EVENT = {
       method: 'GET',
       endpoint: 'test.me',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
       },
-    });
+    };
     const store = mockStore({});
     const apiResponse = { hello: 'world' };
     fetch.mockResponseOnce(JSON.stringify(apiResponse), RESPONSE_200_JSON);
@@ -104,14 +104,14 @@ describe('callAPI cache features', () => {
   beforeEach(() => {
     resetConfig();
     fetch.resetMocks();
-    config.setDefaultEvent({
+    config.DEFAULT_EVENT = {
       method: 'GET',
       endpoint: 'test.me',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
       },
-    });
+    };
     simpleCacheMock.shouldFetch.mockReset();
   });
 
@@ -202,10 +202,7 @@ describe('callAPI cache features', () => {
     };
     const store = mockStore({ [NAME]: { [cacheKey]: keyState } });
     const shouldFetchMock = jest.fn();
-    const cacheOption = {
-      key: cacheKey,
-      shouldFetch: shouldFetchMock,
-    };
+    const cacheOption = { key: cacheKey, shouldFetch: shouldFetchMock };
     const apiResponse = { hello: 'world' };
     fetch.mockResponseOnce(JSON.stringify(apiResponse), RESPONSE_200_JSON);
     shouldFetchMock.mockReturnValueOnce(true);
@@ -213,6 +210,63 @@ describe('callAPI cache features', () => {
     expect(shouldFetchMock.mock.calls.length).toBe(1);
     expect(shouldFetchMock.mock.calls[0]).toEqual([
       { state: keyState, strategy: cacheOption.strategy },
+    ]);
+    expect(store.getActions()).toEqual([
+      { type: types.FETCH_START, meta: { cache: cacheOption } },
+      {
+        type: types.FETCH_SUCCESS,
+        payload: apiResponse,
+        meta: { cache: cacheOption },
+      },
+    ]);
+  });
+
+  it('should use DEFAULT_CACHE_STRATEGY from config', async () => {
+    const cacheKey = 'GET/stuff';
+    const keyState = {
+      fetching: false,
+      fetched: true,
+      error: false,
+      timestamp: 1531982586597,
+      successPayload: { 1: 2 },
+      errorPayload: null,
+    };
+    const store = mockStore({ [NAME]: { [cacheKey]: keyState } });
+    const cacheOption = { key: cacheKey };
+    const cacheStrategy = cache.get(CACHE_TYPES.SIMPLE).buildStrategy();
+    config.DEFAULT_CACHE_STRATEGY = cacheStrategy;
+    simpleCacheMock.shouldFetch.mockReturnValueOnce(false);
+    await store.dispatch(callAPI({ cache: cacheOption }));
+    expect(store.getActions()).toEqual([]);
+    expect(simpleCacheMock.shouldFetch.mock.calls.length).toBe(1);
+    expect(simpleCacheMock.shouldFetch.mock.calls[0]).toEqual([
+      { state: keyState, strategy: cacheStrategy },
+    ]);
+  });
+
+  it('should use custom shouldFetch instead of cache strategy', async () => {
+    const cacheKey = 'GET/stuff';
+    const keyState = {
+      fetching: false,
+      fetched: true,
+      error: false,
+      timestamp: 1531982586597,
+      successPayload: { 1: 2 },
+      errorPayload: null,
+    };
+    const store = mockStore({ [NAME]: { [cacheKey]: keyState } });
+    const shouldFetchMock = jest.fn();
+    const cacheOption = { key: cacheKey, shouldFetch: shouldFetchMock };
+    const cacheStrategy = cache.get(CACHE_TYPES.SIMPLE).buildStrategy();
+    config.DEFAULT_CACHE_STRATEGY = cacheStrategy;
+    const apiResponse = { hello: 'world' };
+    fetch.mockResponseOnce(JSON.stringify(apiResponse), RESPONSE_200_JSON);
+    shouldFetchMock.mockReturnValueOnce(true);
+    await store.dispatch(callAPI({ cache: cacheOption }));
+    expect(simpleCacheMock.shouldFetch.mock.calls.length).toBe(0);
+    expect(shouldFetchMock.mock.calls.length).toBe(1);
+    expect(shouldFetchMock.mock.calls[0]).toEqual([
+      { state: keyState, strategy: cacheStrategy },
     ]);
     expect(store.getActions()).toEqual([
       { type: types.FETCH_START, meta: { cache: cacheOption } },

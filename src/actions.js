@@ -13,11 +13,12 @@ export const callAPI = ({ cache, ...restOptions }) => async (
 ) => {
   const action = Object.assign(
     { types: [] },
-    config.getDefaultEvent(),
+    config.DEFAULT_EVENT,
     restOptions
   );
 
   if (cache && cache.key) {
+    const cacheStrategy = cache.strategy || config.DEFAULT_CACHE_STRATEGY;
     const keyState = selectors.getKeyState(getState(), cache.key);
     action.types = [
       { type: types.FETCH_START, meta: { cache } },
@@ -25,18 +26,15 @@ export const callAPI = ({ cache, ...restOptions }) => async (
       { type: types.FETCH_ERROR, meta: { cache } },
     ];
 
-    if (
-      cache.strategy &&
+    if (cache.shouldFetch) {
+      if (!cache.shouldFetch({ state: keyState, strategy: cacheStrategy })) {
+        return undefined;
+      }
+    } else if (
+      cacheStrategy &&
       !cacheStrategies
-        .get(cache.strategy.type)
-        .shouldFetch({ state: keyState, strategy: cache.strategy })
-    ) {
-      return undefined;
-    }
-
-    if (
-      cache.shouldFetch &&
-      !cache.shouldFetch({ state: keyState, strategy: cache.strategy })
+        .get(cacheStrategy.type)
+        .shouldFetch({ state: keyState, strategy: cacheStrategy })
     ) {
       return undefined;
     }
