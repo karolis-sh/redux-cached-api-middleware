@@ -1,7 +1,13 @@
 import { validateCacheModule } from '../__tests__/utils';
 import * as ttlSuccess from './ttlSuccess';
 
-const { shouldFetch, buildStrategy } = ttlSuccess;
+const { buildStrategy, type, shouldFetch } = ttlSuccess;
+
+describe('buildStrategy', () => {
+  it('should build a valid strategy', () => {
+    expect(buildStrategy({ ttl: 25 })).toEqual({ ttl: 25, type });
+  });
+});
 
 describe('shouldFetch', () => {
   const now = Date.now();

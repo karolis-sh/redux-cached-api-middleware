@@ -3,7 +3,9 @@ import { DEFAULT_KEY_STATE } from './reducer';
 
 const keyValue = (state, key, valueName) => {
   let value;
-  if (state[NAME] && state[NAME][key]) value = state[NAME][key][valueName];
+  if (state && state[NAME] && state[NAME][key]) {
+    value = state[NAME][key][valueName];
+  }
   return typeof value === 'undefined' ? DEFAULT_KEY_STATE[valueName] : value;
 };
 
@@ -17,7 +19,7 @@ export const getErrorPayload = (state, key) =>
   keyValue(state, key, 'errorPayload');
 
 export const getKeyState = (state, key) =>
-  state[NAME] ? state[NAME][key] : undefined;
+  state && state[NAME] ? state[NAME][key] : undefined;
 
 export const getResult = (state, key) => {
   if (hasFetched(state, key)) {

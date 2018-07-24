@@ -4,10 +4,10 @@ import { apiMiddleware } from 'redux-api-middleware';
 
 import { NAME, CACHE_TYPES } from './constants';
 import config, { resetConfig } from './config';
-import { callAPI } from './actions';
 import * as types from './actionTypes';
 import cache from './cache';
 import * as simpleCacheMock from './cache/simple';
+import { invalidateCache, callAPI } from './actions';
 
 const middlewares = [thunk, apiMiddleware];
 const mockStore = configureStore(middlewares);
@@ -23,6 +23,13 @@ const RESPONSE_403_JSON = {
     'content-type': 'application/json',
   },
 };
+
+// =============================================================================
+describe('generic actions', () => {
+  it('should construct a valid invalidateCache object', () => {
+    expect(invalidateCache()).toEqual({ type: types.INVALIDATE_CACHE });
+  });
+});
 
 // =============================================================================
 describe('callAPI base features', () => {
@@ -219,6 +226,28 @@ describe('callAPI cache features', () => {
         meta: { cache: cacheOption },
       },
     ]);
+  });
+
+  it('should not call fetch when custom shouldFetch returns false', async () => {
+    const cacheKey = 'GET/stuff';
+    const keyState = {
+      fetching: false,
+      fetched: true,
+      error: false,
+      timestamp: 1531982586597,
+      successPayload: { hello: 'world' },
+      errorPayload: null,
+    };
+    const store = mockStore({ [NAME]: { [cacheKey]: keyState } });
+    const shouldFetchMock = jest.fn();
+    const cacheOption = { key: cacheKey, shouldFetch: shouldFetchMock };
+    shouldFetchMock.mockReturnValueOnce(false);
+    await store.dispatch(callAPI({ cache: cacheOption }));
+    expect(shouldFetchMock.mock.calls.length).toBe(1);
+    expect(shouldFetchMock.mock.calls[0]).toEqual([
+      { state: keyState, strategy: cacheOption.strategy },
+    ]);
+    expect(store.getActions()).toEqual([]);
   });
 
   it('should use DEFAULT_CACHE_STRATEGY from config', async () => {
