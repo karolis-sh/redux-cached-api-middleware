@@ -1,7 +1,13 @@
 import { validateCacheModule } from '../__tests__/utils';
 import * as simpleSuccess from './simpleSuccess';
 
-const { shouldFetch } = simpleSuccess;
+const { buildStrategy, type, shouldFetch } = simpleSuccess;
+
+describe('buildStrategy', () => {
+  it('should build a valid strategy', () => {
+    expect(buildStrategy()).toEqual({ type });
+  });
+});
 
 describe('shouldFetch', () => {
   it('should be a valid module', () => {

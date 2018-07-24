@@ -8,4 +8,8 @@ describe('cache', () => {
     expect(cache.get(CACHE_TYPES.TTL)).not.toBeUndefined();
     expect(cache.get(CACHE_TYPES.TTL_SUCCESS)).not.toBeUndefined();
   });
+
+  it('should trow an error on invalid module', () => {
+    expect(() => cache.get()).toThrow();
+  });
 });

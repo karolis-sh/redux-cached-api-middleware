@@ -6,6 +6,10 @@ describe('generic actions', () => {
   const key = 'GET/stuff';
   const otherState = { 'POST/stuff': { hello: 'world', fetching: false } };
 
+  it('should pass through invalid action type', () => {
+    expect(reducer(otherState, {})).toEqual(otherState);
+  });
+
   it('should delete all key states with CLEAR_CACHE', () => {
     expect(
       reducer(
@@ -42,6 +46,12 @@ describe('generic actions', () => {
         { type: types.CLEAR_CACHE, payload: key }
       )
     ).toEqual(otherState);
+  });
+
+  it('should not remove valid state with INVALIDATE_CACHE', () => {
+    expect(reducer(otherState, { type: types.INVALIDATE_CACHE })).toEqual(
+      otherState
+    );
   });
 
   it('should remove key state when restored as fetching with INVALIDATE_CACHE', () => {
