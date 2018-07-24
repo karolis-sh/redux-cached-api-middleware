@@ -1,6 +1,6 @@
 {
   "name": "redux-cached-api-middleware",
-  "version": "0.2.0",
+  "version": "0.0.0-development",
   "description": "API caching solution for redux apps",
   "keywords": [
     "api",
@@ -106,6 +106,7 @@
     "rollup-plugin-node-resolve": "^3.3.0",
     "rollup-plugin-peer-deps-external": "^2.2.0",
     "rollup-plugin-terser": "^1.0.1",
+    "semantic-release": "^15.8.1",
     "serve": "^9.4.0",
     "sort-package-json": "^1.15.0",
     "tailwindcss": "^0.6.4",
