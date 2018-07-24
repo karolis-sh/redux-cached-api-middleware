@@ -20,6 +20,7 @@
     "lint": "run-p lint:*",
     "test": "jest",
     "try-demo": "run-s clean build && yarn serve dist",
+    "tdd": "yarn test --watch",
     "qa": "run-p test lint"
   },
   "peerDependencies": {

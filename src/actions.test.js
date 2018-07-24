@@ -189,4 +189,38 @@ describe('callAPI cache features', () => {
       { state: keyState, strategy: cacheOption.strategy },
     ]);
   });
+
+  it('should call fetch when custom shouldFetch returns true', async () => {
+    const cacheKey = 'GET/stuff';
+    const keyState = {
+      fetching: false,
+      fetched: true,
+      error: false,
+      timestamp: 1531982586597,
+      successPayload: { hello: 'world' },
+      errorPayload: null,
+    };
+    const store = mockStore({ [NAME]: { [cacheKey]: keyState } });
+    const shouldFetchMock = jest.fn();
+    const cacheOption = {
+      key: cacheKey,
+      shouldFetch: shouldFetchMock,
+    };
+    const apiResponse = { hello: 'world' };
+    fetch.mockResponseOnce(JSON.stringify(apiResponse), RESPONSE_200_JSON);
+    shouldFetchMock.mockReturnValueOnce(true);
+    await store.dispatch(callAPI({ cache: cacheOption }));
+    expect(shouldFetchMock.mock.calls.length).toBe(1);
+    expect(shouldFetchMock.mock.calls[0]).toEqual([
+      { state: keyState, strategy: cacheOption.strategy },
+    ]);
+    expect(store.getActions()).toEqual([
+      { type: types.FETCH_START, meta: { cache: cacheOption } },
+      {
+        type: types.FETCH_SUCCESS,
+        payload: apiResponse,
+        meta: { cache: cacheOption },
+      },
+    ]);
+  });
 });
