@@ -1,31 +1,58 @@
 {
   "name": "redux-cached-api-middleware",
   "version": "0.0.0",
+  "description": "API caching solution for redux apps",
+  "keywords": [
+    "api",
+    "cache",
+    "fetch",
+    "pwa",
+    "redux",
+    "redux-api-middleware",
+    "redux-cached-api-middleware",
+    "ttl"
+  ],
+  "homepage": "https://buz-zard.github.io/redux-cached-api-middleware/",
+  "bugs": {
+    "url": "https://github.com/buz-zard/redux-cached-api-middleware/issues"
+  },
   "repository": "git@github.com:buz-zard/redux-cached-api-middleware.git",
-  "author": "Karolis Šarapnickis <pastas.k@gmail.com>",
   "license": "MIT",
+  "author": "Karolis Šarapnickis <pastas.k@gmail.com>",
   "main": "lib/index.js",
   "module": "es/index.js",
   "scripts": {
+    "build": "run-s build:package build:demo",
     "build:demo": "cross-env NODE_ENV=demo parcel build demo/index.html --no-minify --public-url $([ \"$CI\" = \"true\" ] && echo /redux-cached-api-middleware || echo /)",
     "build:package": "rollup -c",
-    "build": "run-s build:package build:demo",
     "clean": "rimraf es lib .cache dist coverage",
+    "develop": "concurrently 'yarn develop:package' 'yarn develop:demo'",
     "develop:demo": "cross-env NODE_ENV=demo parcel demo/index.html",
     "develop:package": "yarn build:package -w",
-    "develop": "concurrently 'yarn develop:package' 'yarn develop:demo'",
-    "format": "prettier --write '**/*.*'",
+    "format": "prettier --write '**/*.*' && sort-package-json",
+    "lint": "run-p lint:*",
     "lint:js": "eslint .",
     "lint:md": "markdownlint README.md",
-    "lint": "run-p lint:*",
-    "test": "jest",
-    "try-demo": "run-s clean build && yarn serve dist",
+    "qa": "run-p test lint",
     "tdd": "yarn test --watch",
-    "qa": "run-p test lint"
+    "test": "jest",
+    "try-demo": "run-s clean build && yarn serve dist"
   },
-  "peerDependencies": {
-    "redux-api-middleware": "^2.0.0",
-    "redux-thunk": "^2.0.0"
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "jest": {
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "src/**/*.js",
+      "!src/__tests__/**/*"
+    ],
+    "setupFiles": [
+      "<rootDir>/src/__tests__/__setup__/fetch.js"
+    ],
+    "testRegex": "src/.+\\.test\\.js$"
   },
   "devDependencies": {
     "@k.sh/eslint-config": "1.1.0",
@@ -75,28 +102,17 @@
     "rollup-plugin-node-resolve": "^3.3.0",
     "rollup-plugin-peer-deps-external": "^2.2.0",
     "serve": "^9.3.0",
+    "sort-package-json": "^1.15.0",
     "travis-deploy-once": "^5.0.1",
     "whatwg-fetch": "^2.0.4"
   },
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
-    }
+  "peerDependencies": {
+    "redux-api-middleware": "^2.0.0",
+    "redux-thunk": "^2.0.0"
   },
   "husky": {
     "hooks": {
       "pre-push": "yarn qa"
     }
-  },
-  "jest": {
-    "testRegex": "src/.+\\.test\\.js$",
-    "setupFiles": [
-      "<rootDir>/src/__tests__/__setup__/fetch.js"
-    ],
-    "collectCoverage": true,
-    "collectCoverageFrom": [
-      "src/**/*.js",
-      "!src/__tests__/**/*"
-    ]
   }
 }
