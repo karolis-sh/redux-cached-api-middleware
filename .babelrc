@@ -1,5 +1,5 @@
 {
-  "presets": [["env", { "loose": true, "modules": false, "targets": { "node": "8" } }]],
+  "presets": [["env", { "loose": true, "modules": false }]],
   "plugins": ["transform-object-rest-spread"],
   "env": {
     "test": {
