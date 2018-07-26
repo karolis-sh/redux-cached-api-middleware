@@ -1,6 +1,6 @@
 {
   "name": "redux-cached-api-middleware",
-  "version": "0.0.0",
+  "version": "0.1.0-next",
   "description": "API caching solution for redux apps",
   "keywords": [
     "api",
