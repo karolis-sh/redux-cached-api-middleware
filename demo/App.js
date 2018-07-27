@@ -23,7 +23,7 @@ function App() {
           key: 'GET/reduxjs/repos',
           strategy: cachedApi.cache
             .get(cachedApi.constants.CACHE_TYPES.TTL)
-            .buildStrategy({ ttl: 10 * 1000 }), // 30 seconds
+            .buildStrategy({ ttl: 60 * 1000 }), // 1 minute
         }}
       />
     </div>

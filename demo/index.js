@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
+import registerServiceWorker from './registerServiceWorker';
 import 'babel-polyfill';
 import 'whatwg-fetch';
 
@@ -19,6 +20,7 @@ ReactDOM.render(
   </Provider>,
   document.getElementById('root')
 );
+registerServiceWorker();
 
 if (module.hot) {
   module.hot.accept();
