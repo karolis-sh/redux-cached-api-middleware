@@ -883,10 +883,6 @@ babel-plugin-transform-flow-strip-types@^6.22.0:
     babel-plugin-syntax-flow "^6.18.0"
     babel-runtime "^6.22.0"
 
-babel-plugin-transform-inline-environment-variables@^0.4.3:
-  version "0.4.3"
-  resolved "https://registry.yarnpkg.com/babel-plugin-transform-inline-environment-variables/-/babel-plugin-transform-inline-environment-variables-0.4.3.tgz#a3b09883353be8b5e2336e3ff1ef8a5d93f9c489"
-
 babel-plugin-transform-object-rest-spread@^6.26.0:
   version "6.26.0"
   resolved "https://registry.yarnpkg.com/babel-plugin-transform-object-rest-spread/-/babel-plugin-transform-object-rest-spread-6.26.0.tgz#0f36692d50fef6b7e2d4b3ac1478137a963b7b06"
@@ -4749,9 +4745,9 @@ map-visit@^1.0.0:
   dependencies:
     object-visit "^1.0.0"
 
-markdown-it@8.4.1:
-  version "8.4.1"
-  resolved "https://registry.yarnpkg.com/markdown-it/-/markdown-it-8.4.1.tgz#206fe59b0e4e1b78a7c73250af9b34a4ad0aaf44"
+markdown-it@8.4.2:
+  version "8.4.2"
+  resolved "https://registry.yarnpkg.com/markdown-it/-/markdown-it-8.4.2.tgz#386f98998dc15a37722aa7722084f4020bdd9b54"
   dependencies:
     argparse "^1.0.7"
     entities "~1.1.1"
@@ -4759,9 +4755,9 @@ markdown-it@8.4.1:
     mdurl "^1.0.1"
     uc.micro "^1.0.5"
 
-markdownlint-cli@^0.11.0:
-  version "0.11.0"
-  resolved "https://registry.yarnpkg.com/markdownlint-cli/-/markdownlint-cli-0.11.0.tgz#ba9ee55b7067e6c1c25f7e31cd171d03bc4830f5"
+markdownlint-cli@^0.12.0:
+  version "0.12.0"
+  resolved "https://registry.yarnpkg.com/markdownlint-cli/-/markdownlint-cli-0.12.0.tgz#14db32e28be098a0963c91e547f8adb58efdb158"
   dependencies:
     commander "~2.9.0"
     deep-extend "~0.5.1"
@@ -4770,14 +4766,14 @@ markdownlint-cli@^0.11.0:
     js-yaml "~3.11.0"
     lodash.differencewith "~4.5.0"
     lodash.flatten "~4.4.0"
-    markdownlint "~0.10.0"
+    markdownlint "~0.11.0"
     rc "~1.2.7"
 
-markdownlint@~0.10.0:
-  version "0.10.0"
-  resolved "https://registry.yarnpkg.com/markdownlint/-/markdownlint-0.10.0.tgz#ee941ee943f78ff6adbc1ff0fad49365e600b664"
+markdownlint@~0.11.0:
+  version "0.11.0"
+  resolved "https://registry.yarnpkg.com/markdownlint/-/markdownlint-0.11.0.tgz#3858bbdbc1ab78abf0c098d841c72b63dd3206a0"
   dependencies:
-    markdown-it "8.4.1"
+    markdown-it "8.4.2"
 
 math-expression-evaluator@^1.2.14:
   version "1.2.17"
