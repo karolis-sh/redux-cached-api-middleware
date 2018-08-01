@@ -27,7 +27,7 @@
     "build:package": "rollup -c",
     "clean": "rimraf es lib .cache dist coverage",
     "develop": "concurrently 'yarn develop:package' 'yarn develop:demo'",
-    "develop:demo": "cross-env NODE_ENV=demo parcel demo/index.html",
+    "develop:demo": "cross-env NODE_ENV=demo DEVELOP=true parcel demo/index.html",
     "develop:package": "cross-env NODE_ENV=development yarn build:package -w",
     "format": "prettier --write '**/*.*' && sort-package-json",
     "lint": "run-p lint:*",
