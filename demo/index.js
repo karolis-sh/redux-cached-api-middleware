@@ -6,7 +6,7 @@ import registerServiceWorker from './registerServiceWorker';
 import 'babel-polyfill';
 import 'whatwg-fetch';
 
-import App, { init } from './App';
+import App, { init } from './components/App';
 import { store, persistor } from './state';
 import './index.css';
 

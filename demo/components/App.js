@@ -1,6 +1,7 @@
 import React from 'react';
 import * as cachedApi from 'redux-cached-api-middleware';
 
+import HardRefresher from './HardRefresher';
 import ResourceLoader from './ResourceLoader';
 
 export const init = () => {
@@ -16,6 +17,9 @@ export const init = () => {
 function App() {
   return (
     <div className="demo">
+      <header>
+        <HardRefresher />
+      </header>
       <h3>redux-cached-api-middleware demo</h3>
       <ResourceLoader
         url="https://api.github.com/users/reduxjs/repos"
