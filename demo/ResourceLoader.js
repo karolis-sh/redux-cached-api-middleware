@@ -23,8 +23,18 @@ class ResourceLoader extends React.Component {
             <div>
               <b>{url}</b> result:
             </div>
-            <div className="api-response">
-              <ReactJson src={result.payload} name={null} collapsed />
+            <div>
+              {result.error ? (
+                <div>
+                  <div>Error</div>
+                  <ReactJson src={result.payload.response} name={null} />
+                </div>
+              ) : (
+                <div>
+                  <div>Success</div>
+                  <ReactJson src={result.payload} name={null} collapsed />
+                </div>
+              )}
             </div>
           </div>
         )}

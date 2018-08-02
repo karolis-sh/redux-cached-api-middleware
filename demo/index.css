@@ -1,17 +1,28 @@
-body {
-  margin: 0;
-  padding: 0;
-  font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto,
-    'Helvetica Neue', Arial, sans-serif;
+ @tailwind preflight;
+ @tailwind components;
+
+.btn {
+  @apply bg-white text-grey-darkest py-1 px-2 border border-grey-light rounded shadow;
 }
 
-.demo {
-  margin: 2rem 10%;
+.btn:hover {
+  @apply bg-grey-lightest;
 }
 
-.api-response {
-  background: #ededed;
-  padding: 1rem;
-  border-radius: 3px;
-  margin-top: 1rem;
+.link {
+  @apply text-black;
 }
+
+.link:hover {
+  @apply text-grey-darkest;
+}
+
+.link--white {
+  @apply text-white;
+}
+
+.link--white:hover {
+  @apply text-grey-light;
+}
+
+ @tailwind utilities;

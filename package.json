@@ -66,6 +66,7 @@
     "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
+    "classnames": "^2.2.6",
     "codecov": "^3.0.4",
     "concurrently": "^3.6.0",
     "cross-env": "^5.2.0",
@@ -105,6 +106,7 @@
     "rollup-plugin-terser": "^1.0.1",
     "serve": "^9.4.0",
     "sort-package-json": "^1.15.0",
+    "tailwindcss": "^0.6.4",
     "travis-deploy-once": "^5.0.1",
     "whatwg-fetch": "^2.0.4"
   },
