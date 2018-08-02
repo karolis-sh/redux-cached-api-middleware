@@ -4,8 +4,8 @@ import * as selectors from './selectors';
 
 describe('selectors', () => {
   it('should handle invalid state', () => {
-    expect(selectors.getResult(null, null)).toBeUndefined();
     expect(selectors.getKeyState(null, null)).toBeUndefined();
+    expect(selectors.getResult(null, null)).toEqual({});
   });
 
   it('should return default values for simple fields', () => {
@@ -63,8 +63,12 @@ describe('selectors', () => {
     };
     const state = { [NAME]: { [key]: keyState, otherKey: {} } };
     expect(selectors.getResult(state, key)).toEqual({
+      fetching: keyState.fetching,
+      fetched: keyState.fetched,
       error: keyState.error,
       timestamp: keyState.timestamp,
+      lastSuccessPayload: keyState.successPayload,
+      lastErrorPayload: keyState.errorPayload,
       payload: keyState.successPayload,
     });
   });
@@ -81,8 +85,12 @@ describe('selectors', () => {
     };
     const state = { [NAME]: { [key]: keyState, otherKey: {} } };
     expect(selectors.getResult(state, key)).toEqual({
+      fetching: keyState.fetching,
+      fetched: keyState.fetched,
       error: keyState.error,
       timestamp: keyState.timestamp,
+      lastSuccessPayload: keyState.successPayload,
+      lastErrorPayload: keyState.errorPayload,
       payload: keyState.errorPayload,
     });
   });

@@ -22,15 +22,16 @@ export const getKeyState = (state, key) =>
   state && state[NAME] ? state[NAME][key] : undefined;
 
 export const getResult = (state, key) => {
-  if (hasFetched(state, key)) {
-    const result = {
-      error: isError(state, key),
-      timestamp: getTimestamp(state, key),
-    };
-    result.payload = result.error
-      ? getErrorPayload(state, key)
-      : getSuccessPayload(state, key);
-    return result;
-  }
-  return undefined;
+  const keyState = getKeyState(state, key);
+  if (!keyState) return {};
+  const result = {
+    fetching: keyState.fetching,
+    fetched: keyState.fetched,
+    error: keyState.error,
+    timestamp: keyState.timestamp,
+    lastSuccessPayload: keyState.successPayload,
+    lastErrorPayload: keyState.errorPayload,
+    payload: keyState.error ? keyState.errorPayload : keyState.successPayload,
+  };
+  return result;
 };
