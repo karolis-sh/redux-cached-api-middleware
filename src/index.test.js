@@ -1,4 +1,4 @@
-import * as cachedApi from '.';
+import cachedApi from '.';
 
 describe('cachedApi', () => {
   it('should export all needed items', () => {

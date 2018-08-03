@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import * as cachedApi from 'redux-cached-api-middleware';
+import cachedApi from 'redux-cached-api-middleware';
 
 import CryptoCard from './CryptoCard';
 
