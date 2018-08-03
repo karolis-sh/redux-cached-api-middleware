@@ -4,7 +4,7 @@ function Information() {
   const refreshButton = (
     <button
       type="button"
-      className="btn mx-1"
+      className="btn m-1"
       onClick={() => {
         localStorage.clear();
         window.location.reload(true);
@@ -33,6 +33,8 @@ function Information() {
           <a
             href="https://github.com/buz-zard/redux-cached-api-middleware/tree/master/demo"
             className="link link--white"
+            target="_blank"
+            rel="noopener noreferrer"
           >
             source
           </a>). The Redux state is synced with localStorage, so all of the
