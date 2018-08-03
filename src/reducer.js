@@ -28,7 +28,9 @@ export default (state = DEFAULT_STATE, { type, payload, meta }) => {
       );
       if (invalidStateKeys.length) {
         const newState = { ...state };
-        invalidStateKeys.forEach(item => delete newState[item]);
+        invalidStateKeys.forEach(key => {
+          newState[key].fetching = false;
+        });
         return newState;
       }
       return state;

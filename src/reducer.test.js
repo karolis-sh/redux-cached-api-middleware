@@ -55,22 +55,26 @@ describe('generic actions', () => {
   });
 
   it('should remove key state when restored as fetching with INVALIDATE_CACHE', () => {
+    const keyState = {
+      fetching: true,
+      fetched: true,
+      error: false,
+      timestamp: 1245,
+      successPayload: 'Hello',
+      errorPayload: 'World',
+    };
     expect(
       reducer(
         {
           ...otherState,
-          [key]: {
-            fetching: true,
-            fetched: false,
-            error: false,
-            timestamp: null,
-            successPayload: null,
-            errorPayload: null,
-          },
+          [key]: keyState,
         },
         { type: types.INVALIDATE_CACHE }
       )
-    ).toEqual(otherState);
+    ).toEqual({
+      ...otherState,
+      [key]: { ...keyState, fetching: false },
+    });
   });
 });
 
