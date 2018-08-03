@@ -6,11 +6,9 @@ import registerServiceWorker from './registerServiceWorker';
 import 'babel-polyfill';
 import 'whatwg-fetch';
 
-import App, { init } from './App';
+import App from './App';
 import { store, persistor } from './state';
 import './index.css';
-
-init();
 
 ReactDOM.render(
   <Provider store={store}>

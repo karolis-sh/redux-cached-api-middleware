@@ -6,4 +6,4 @@ import * as actions from './actions';
 import reducer from './reducer';
 import * as selectors from './selectors';
 
-export { config, constants, cache, actions, reducer, selectors };
+export default { config, constants, cache, actions, reducer, selectors };

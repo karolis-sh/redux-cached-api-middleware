@@ -4,7 +4,7 @@ import { apiMiddleware } from 'redux-api-middleware';
 import { persistStore, persistCombineReducers } from 'redux-persist';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import storage from 'redux-persist/lib/storage';
-import * as cachedApi from 'redux-cached-api-middleware';
+import cachedApi from 'redux-cached-api-middleware';
 
 const persistConfig = {
   key: 'demo-1',
