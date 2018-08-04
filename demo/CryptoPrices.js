@@ -6,9 +6,14 @@ import api from 'redux-cached-api-middleware';
 import CryptoCard from './CryptoCard';
 
 class CryptoPrices extends React.Component {
-  async componentDidMount() {
-    const { fetchData } = this.props;
-    fetchData();
+  componentDidMount() {
+    const { fetchCoinData } = this.props;
+    fetchCoinData();
+    this.interval = setInterval(fetchCoinData, 1000);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.interval);
   }
 
   render() {
@@ -25,24 +30,30 @@ class CryptoPrices extends React.Component {
           <CryptoCard data={ltc} />
         </div>
         <div className="mx-2 my-6">
-          <b>Note:</b> Cryptocurrency values are powered by{' '}
-          <a
-            href="https://www.cryptonator.com/api/"
-            className="link"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            cryptonator API
-          </a>. Each request is cached for 10 minutes. Check{' '}
-          <a
-            href="https://github.com/buz-zard/redux-cached-api-middleware/tree/master/demo"
-            className="link"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            source
-          </a>{' '}
-          for implementation details.
+          <div className="mb-4">
+            Data is gathered via separate API request for each coin. Requests
+            are cached for 30 seconds. Check{' '}
+            <a
+              href="https://github.com/buz-zard/redux-cached-api-middleware/tree/master/demo"
+              className="link"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              source code
+            </a>{' '}
+            for implementation details.
+          </div>
+          <div>
+            <b>Note:</b> Cryptocurrency values are powered by{' '}
+            <a
+              href="https://www.cryptonator.com/api/"
+              className="link"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              cryptonator API
+            </a>.
+          </div>
         </div>
       </div>
     );
@@ -50,7 +61,7 @@ class CryptoPrices extends React.Component {
 }
 
 CryptoPrices.propTypes = {
-  fetchData: PropTypes.func.isRequired,
+  fetchCoinData: PropTypes.func.isRequired,
   data: PropTypes.shape({
     btc: PropTypes.shape({}).isRequired,
     eth: PropTypes.shape({}).isRequired,
@@ -80,7 +91,7 @@ const enhance = connect(
   }),
   dispatch => ({
     dispatch,
-    fetchData: () => {
+    fetchCoinData: () => {
       const fetchCoinData = (url, cacheKey) =>
         dispatch(
           api.actions.invoke({
@@ -91,7 +102,7 @@ const enhance = connect(
               key: cacheKey,
               strategy: api.cache
                 .get(api.constants.CACHE_TYPES.TTL_SUCCESS)
-                .buildStrategy({ ttl: 10 * 60 * 1000 }), // 10 minutes
+                .buildStrategy({ ttl: 30 * 1000 }), // 30 seconds
             },
           })
         );

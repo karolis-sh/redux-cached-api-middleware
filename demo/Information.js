@@ -29,16 +29,9 @@ function Information() {
       </div>
       <div>
         <p>
-          This is a React + Redux PWA demo application (
-          <a
-            href="https://github.com/buz-zard/redux-cached-api-middleware/tree/master/demo"
-            className="link link--white"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            source
-          </a>). The Redux state is synced with localStorage, so all of the
-          resources and API data can be accessed while in offline mode.
+          This is a React + Redux PWA demo application. The Redux state is
+          synced with localStorage, so all of the resources and API data can be
+          accessed while in offline mode.
         </p>
         <br />
         <p>
