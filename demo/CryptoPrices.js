@@ -24,15 +24,15 @@ class CryptoPrices extends React.Component {
       <div className="my-5 overflow-x-auto px-4">
         <h2 className="mx-2">Cryptocurrencies</h2>
         <div className="flex flex-wrap my-3">
-          <CryptoCard data={btc} />
-          <CryptoCard data={eth} />
-          <CryptoCard data={xrp} />
-          <CryptoCard data={ltc} />
+          <CryptoCard data={btc} name="Bitcoin" />
+          <CryptoCard data={eth} name="Ethereum" />
+          <CryptoCard data={xrp} name="XRP" />
+          <CryptoCard data={ltc} name="Litecoin" />
         </div>
         <div className="mx-2 my-6">
           <div className="mb-4">
             Data is gathered via separate API request for each coin. Requests
-            are cached for 30 seconds. Check{' '}
+            are cached (on the client side) for 30 seconds. Check{' '}
             <a
               href="https://github.com/buz-zard/redux-cached-api-middleware/tree/master/demo"
               className="link"

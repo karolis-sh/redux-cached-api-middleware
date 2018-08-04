@@ -22,16 +22,16 @@ class CryptoCard extends React.Component {
   }
 
   render() {
-    const { data } = this.props;
+    const { name, data } = this.props;
     const { now } = this.state;
 
     if (data.lastSuccessPayload && data.lastSuccessPayload.success) {
-      const { base, target, price, change } = data.lastSuccessPayload.ticker;
+      const { target, price, change } = data.lastSuccessPayload.ticker;
       const changeNumber = Number(change);
       return (
         <div className="inline-block border-2 border-grey rounded py-2 px-3 m-2 flex-grow">
           <h3>
-            {base}{' '}
+            {name}{' '}
             {data.fetching && <div className="loader inline-block ml-1" />}
           </h3>
           <div className="mt-1 mb-2">
@@ -55,11 +55,36 @@ class CryptoCard extends React.Component {
         </div>
       );
     }
+
+    if (data.fetching) {
+      return (
+        <div className="inline-block border-2 border-grey rounded py-2 px-3 m-2 flex-grow bg-grey-lightest">
+          <h3>{name}</h3>
+          <div className="mt-1 mb-2">
+            <div className="loader inline-block ml-1" />
+          </div>
+        </div>
+      );
+    }
+
+    if (
+      data.error ||
+      (data.lastSuccessPayload && !data.lastSuccessPayload.success)
+    ) {
+      return (
+        <div className="inline-block border-2 border-red rounded py-2 px-3 m-2 flex-grow bg-red-lightest">
+          <h3>{name}</h3>
+          <div className="mt-1 mb-2">Error occurred while fetching</div>
+        </div>
+      );
+    }
+
     return null;
   }
 }
 
 CryptoCard.propTypes = {
+  name: PropTypes.string.isRequired,
   data: PropTypes.shape({}).isRequired,
 };
 
