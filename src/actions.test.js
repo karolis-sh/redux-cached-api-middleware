@@ -7,7 +7,7 @@ import config, { resetConfig } from './config';
 import * as types from './actionTypes';
 import cache from './cache';
 import * as simpleCacheMock from './cache/simple';
-import { invalidateCache, callAPI } from './actions';
+import { invalidateCache, invoke } from './actions';
 
 const middlewares = [thunk, apiMiddleware];
 const mockStore = configureStore(middlewares);
@@ -32,7 +32,7 @@ describe('generic actions', () => {
 });
 
 // =============================================================================
-describe('callAPI base features', () => {
+describe('invoke base features', () => {
   beforeEach(() => {
     resetConfig();
     fetch.resetMocks();
@@ -43,7 +43,7 @@ describe('callAPI base features', () => {
     const apiResponse = { hello: 'world' };
     fetch.mockResponseOnce(JSON.stringify(apiResponse), RESPONSE_200_JSON);
     await store.dispatch(
-      callAPI({
+      invoke({
         endpoint: 'test.me',
         method: 'GET',
         types: ['REQUEST', 'SUCCESS', 'FAILURE'],
@@ -60,7 +60,7 @@ describe('callAPI base features', () => {
     const apiResponse = { hello: 'world' };
     fetch.mockResponseOnce(JSON.stringify(apiResponse), RESPONSE_403_JSON);
     await store.dispatch(
-      callAPI({
+      invoke({
         endpoint: 'test.me',
         method: 'GET',
         types: ['REQUEST', 'SUCCESS', 'FAILURE'],
@@ -95,7 +95,7 @@ describe('callAPI base features', () => {
     const apiResponse = { hello: 'world' };
     fetch.mockResponseOnce(JSON.stringify(apiResponse), RESPONSE_200_JSON);
     await store.dispatch(
-      callAPI({ method: 'POST', types: ['REQUEST', 'SUCCESS', 'FAILURE'] })
+      invoke({ method: 'POST', types: ['REQUEST', 'SUCCESS', 'FAILURE'] })
     );
     expect(store.getActions()).toEqual([
       { type: 'REQUEST' },
@@ -105,7 +105,7 @@ describe('callAPI base features', () => {
 });
 
 // =============================================================================
-describe('callAPI cache features', () => {
+describe('invoke cache features', () => {
   simpleCacheMock.shouldFetch = jest.fn();
 
   beforeEach(() => {
@@ -131,7 +131,7 @@ describe('callAPI cache features', () => {
     };
     simpleCacheMock.shouldFetch.mockReturnValueOnce(true);
     fetch.mockResponseOnce(JSON.stringify(apiResponse), RESPONSE_403_JSON);
-    await store.dispatch(callAPI({ cache: cacheOption }));
+    await store.dispatch(invoke({ cache: cacheOption }));
     expect(store.getActions()).toEqual([
       { type: types.FETCH_START, meta: { cache: cacheOption } },
       {
@@ -162,7 +162,7 @@ describe('callAPI cache features', () => {
     const apiResponse = { hello: 'world' };
     simpleCacheMock.shouldFetch.mockReturnValueOnce(true);
     fetch.mockResponseOnce(JSON.stringify(apiResponse), RESPONSE_200_JSON);
-    await store.dispatch(callAPI({ cache: cacheOption }));
+    await store.dispatch(invoke({ cache: cacheOption }));
     expect(store.getActions()).toEqual([
       { type: types.FETCH_START, meta: { cache: cacheOption } },
       {
@@ -189,7 +189,7 @@ describe('callAPI cache features', () => {
       strategy: cache.get(CACHE_TYPES.SIMPLE).buildStrategy(),
     };
     simpleCacheMock.shouldFetch.mockReturnValueOnce(false);
-    await store.dispatch(callAPI({ cache: cacheOption }));
+    await store.dispatch(invoke({ cache: cacheOption }));
     expect(store.getActions()).toEqual([]);
     expect(simpleCacheMock.shouldFetch.mock.calls.length).toBe(1);
     expect(simpleCacheMock.shouldFetch.mock.calls[0]).toEqual([
@@ -213,7 +213,7 @@ describe('callAPI cache features', () => {
     const apiResponse = { hello: 'world' };
     fetch.mockResponseOnce(JSON.stringify(apiResponse), RESPONSE_200_JSON);
     shouldFetchMock.mockReturnValueOnce(true);
-    await store.dispatch(callAPI({ cache: cacheOption }));
+    await store.dispatch(invoke({ cache: cacheOption }));
     expect(shouldFetchMock.mock.calls.length).toBe(1);
     expect(shouldFetchMock.mock.calls[0]).toEqual([
       { state: keyState, strategy: cacheOption.strategy },
@@ -242,7 +242,7 @@ describe('callAPI cache features', () => {
     const shouldFetchMock = jest.fn();
     const cacheOption = { key: cacheKey, shouldFetch: shouldFetchMock };
     shouldFetchMock.mockReturnValueOnce(false);
-    await store.dispatch(callAPI({ cache: cacheOption }));
+    await store.dispatch(invoke({ cache: cacheOption }));
     expect(shouldFetchMock.mock.calls.length).toBe(1);
     expect(shouldFetchMock.mock.calls[0]).toEqual([
       { state: keyState, strategy: cacheOption.strategy },
@@ -265,7 +265,7 @@ describe('callAPI cache features', () => {
     const cacheStrategy = cache.get(CACHE_TYPES.SIMPLE).buildStrategy();
     config.DEFAULT_CACHE_STRATEGY = cacheStrategy;
     simpleCacheMock.shouldFetch.mockReturnValueOnce(false);
-    await store.dispatch(callAPI({ cache: cacheOption }));
+    await store.dispatch(invoke({ cache: cacheOption }));
     expect(store.getActions()).toEqual([]);
     expect(simpleCacheMock.shouldFetch.mock.calls.length).toBe(1);
     expect(simpleCacheMock.shouldFetch.mock.calls[0]).toEqual([
@@ -291,7 +291,7 @@ describe('callAPI cache features', () => {
     const apiResponse = { hello: 'world' };
     fetch.mockResponseOnce(JSON.stringify(apiResponse), RESPONSE_200_JSON);
     shouldFetchMock.mockReturnValueOnce(true);
-    await store.dispatch(callAPI({ cache: cacheOption }));
+    await store.dispatch(invoke({ cache: cacheOption }));
     expect(simpleCacheMock.shouldFetch.mock.calls.length).toBe(0);
     expect(shouldFetchMock.mock.calls.length).toBe(1);
     expect(shouldFetchMock.mock.calls[0]).toEqual([

@@ -1,8 +1,8 @@
-import cachedApi from '.';
+import api from '.';
 
-describe('cachedApi', () => {
+describe('api', () => {
   it('should export all needed items', () => {
-    expect(Object.keys(cachedApi)).toEqual([
+    expect(Object.keys(api)).toEqual([
       'config',
       'constants',
       'cache',
@@ -13,6 +13,6 @@ describe('cachedApi', () => {
   });
 
   it('should not export undefined/null objects', () => {
-    expect(Object.values(cachedApi).filter(Boolean).length).not.toBe(0);
+    expect(Object.values(api).filter(Boolean).length).not.toBe(0);
   });
 });

@@ -34,13 +34,13 @@ $ yarn add redux-cached-api-middleware redux-api-middleware redux-thunk
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { apiMiddleware } from 'redux-api-middleware';
-import * as cachedApi from 'redux-cached-api-middleware';
+import api from 'redux-cached-api-middleware';
 import reducers from './reducers';
 
 const store = createStore(
   combineReducers({
     ...reducers,
-    [cachedApi.constants.NAME]: cachedApi.reducer,
+    [api.constants.NAME]: api.reducer,
   }),
   applyMiddleware(thunk, apiMiddleware)
 );

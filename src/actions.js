@@ -7,7 +7,7 @@ import * as selectors from './selectors';
 
 export const invalidateCache = () => ({ type: types.INVALIDATE_CACHE });
 
-export const callAPI = ({ cache, ...restOptions }) => async (
+export const invoke = ({ cache, ...restOptions }) => async (
   dispatch,
   getState
 ) => {

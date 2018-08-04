@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import cachedApi from 'redux-cached-api-middleware';
+import api from 'redux-cached-api-middleware';
 
 import CryptoCard from './CryptoCard';
 
@@ -72,54 +72,34 @@ const LTC_CACHE_KEY = 'GET/ltc-usd';
 const enhance = connect(
   state => ({
     data: {
-      btc: cachedApi.selectors.getResult(state, BTC_CACHE_KEY),
-      eth: cachedApi.selectors.getResult(state, ETH_CACHE_KEY),
-      xrp: cachedApi.selectors.getResult(state, XRP_CACHE_KEY),
-      ltc: cachedApi.selectors.getResult(state, LTC_CACHE_KEY),
+      btc: api.selectors.getResult(state, BTC_CACHE_KEY),
+      eth: api.selectors.getResult(state, ETH_CACHE_KEY),
+      xrp: api.selectors.getResult(state, XRP_CACHE_KEY),
+      ltc: api.selectors.getResult(state, LTC_CACHE_KEY),
     },
   }),
   dispatch => ({
     dispatch,
     fetchData: () => {
-      const baseOptions = {
-        method: 'GET',
-        headers: { Accept: 'application/json' },
-      };
-      const makeCache = key => ({
-        key,
-        strategy: cachedApi.cache
-          .get(cachedApi.constants.CACHE_TYPES.TTL_SUCCESS)
-          .buildStrategy({ ttl: 10 * 60 * 1000 }), // 10 minutes
-      });
+      const fetchCoinData = (url, cacheKey) =>
+        dispatch(
+          api.actions.invoke({
+            method: 'GET',
+            headers: { Accept: 'application/json' },
+            endpoint: url,
+            cache: {
+              key: cacheKey,
+              strategy: api.cache
+                .get(api.constants.CACHE_TYPES.TTL_SUCCESS)
+                .buildStrategy({ ttl: 10 * 60 * 1000 }), // 10 minutes
+            },
+          })
+        );
 
-      dispatch(
-        cachedApi.actions.callAPI({
-          ...baseOptions,
-          endpoint: BTC_URL,
-          cache: makeCache(BTC_CACHE_KEY),
-        })
-      );
-      dispatch(
-        cachedApi.actions.callAPI({
-          ...baseOptions,
-          endpoint: ETH_URL,
-          cache: makeCache(ETH_CACHE_KEY),
-        })
-      );
-      dispatch(
-        cachedApi.actions.callAPI({
-          ...baseOptions,
-          endpoint: XRP_URL,
-          cache: makeCache(XRP_CACHE_KEY),
-        })
-      );
-      dispatch(
-        cachedApi.actions.callAPI({
-          ...baseOptions,
-          endpoint: LTC_URL,
-          cache: makeCache(LTC_CACHE_KEY),
-        })
-      );
+      fetchCoinData(BTC_URL, BTC_CACHE_KEY);
+      fetchCoinData(ETH_URL, ETH_CACHE_KEY);
+      fetchCoinData(XRP_URL, XRP_CACHE_KEY);
+      fetchCoinData(LTC_URL, LTC_CACHE_KEY);
     },
   })
 );

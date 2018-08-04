@@ -4,7 +4,7 @@ import { apiMiddleware } from 'redux-api-middleware';
 import { persistStore, persistCombineReducers } from 'redux-persist';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import storage from 'redux-persist/lib/storage';
-import cachedApi from 'redux-cached-api-middleware';
+import api from 'redux-cached-api-middleware';
 
 const persistConfig = {
   key: 'demo-1',
@@ -14,14 +14,14 @@ const persistConfig = {
 const persistanceNormalizer = store => next => action => {
   const result = next(action);
   if (action.type === 'persist/REHYDRATE') {
-    store.dispatch(cachedApi.actions.invalidateCache());
+    store.dispatch(api.actions.invalidateCache());
   }
   return result;
 };
 
 const store = createStore(
   persistCombineReducers(persistConfig, {
-    [cachedApi.constants.NAME]: cachedApi.reducer,
+    [api.constants.NAME]: api.reducer,
   }),
   composeWithDevTools(
     applyMiddleware(thunk, apiMiddleware, persistanceNormalizer)
