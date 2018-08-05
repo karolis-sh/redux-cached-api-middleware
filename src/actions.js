@@ -35,7 +35,7 @@ export const invoke = ({ cache, ...restOptions }) => async (
     ];
 
     if (cache.shouldFetch) {
-      if (!cache.shouldFetch({ state: keyState, strategy: cacheStrategy })) {
+      if (!cache.shouldFetch({ state: keyState })) {
         return undefined;
       }
     } else if (

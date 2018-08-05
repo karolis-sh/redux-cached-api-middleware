@@ -219,6 +219,9 @@ describe('invoke cache features', () => {
       successPayload: { hello: 'world' },
       errorPayload: null,
     };
+    config.DEFAULT_CACHE_STRATEGY = cache
+      .get(CACHE_TYPES.SIMPLE)
+      .buildStrategy();
     const store = mockStore({ [NAME]: { [cacheKey]: keyState } });
     const shouldFetchMock = jest.fn();
     const cacheOption = { key: cacheKey, shouldFetch: shouldFetchMock };
@@ -227,9 +230,7 @@ describe('invoke cache features', () => {
     shouldFetchMock.mockReturnValueOnce(true);
     await store.dispatch(invoke({ cache: cacheOption }));
     expect(shouldFetchMock.mock.calls.length).toBe(1);
-    expect(shouldFetchMock.mock.calls[0]).toEqual([
-      { state: keyState, strategy: cacheOption.strategy },
-    ]);
+    expect(shouldFetchMock.mock.calls[0]).toEqual([{ state: keyState }]);
     expect(store.getActions()).toEqual([
       { type: types.FETCH_START, meta: { cache: cacheOption } },
       {
@@ -297,18 +298,18 @@ describe('invoke cache features', () => {
     };
     const store = mockStore({ [NAME]: { [cacheKey]: keyState } });
     const shouldFetchMock = jest.fn();
-    const cacheOption = { key: cacheKey, shouldFetch: shouldFetchMock };
-    const cacheStrategy = cache.get(CACHE_TYPES.SIMPLE).buildStrategy();
-    config.DEFAULT_CACHE_STRATEGY = cacheStrategy;
+    const cacheOption = {
+      key: cacheKey,
+      shouldFetch: shouldFetchMock,
+      strategy: cache.get(CACHE_TYPES.SIMPLE).buildStrategy(),
+    };
     const apiResponse = { hello: 'world' };
     fetch.mockResponseOnce(JSON.stringify(apiResponse), RESPONSE_200_JSON);
     shouldFetchMock.mockReturnValueOnce(true);
     await store.dispatch(invoke({ cache: cacheOption }));
     expect(simpleCacheMock.shouldFetch.mock.calls.length).toBe(0);
     expect(shouldFetchMock.mock.calls.length).toBe(1);
-    expect(shouldFetchMock.mock.calls[0]).toEqual([
-      { state: keyState, strategy: cacheStrategy },
-    ]);
+    expect(shouldFetchMock.mock.calls[0]).toEqual([{ state: keyState }]);
     expect(store.getActions()).toEqual([
       { type: types.FETCH_START, meta: { cache: cacheOption } },
       {
