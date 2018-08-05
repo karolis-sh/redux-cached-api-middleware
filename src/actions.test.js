@@ -7,7 +7,7 @@ import config, { resetConfig } from './config';
 import * as types from './actionTypes';
 import cache from './cache';
 import * as simpleCacheMock from './cache/simple';
-import { invalidateCache, invoke } from './actions';
+import { invalidateCache, clearCache, invoke } from './actions';
 
 const middlewares = [thunk, apiMiddleware];
 const mockStore = configureStore(middlewares);
@@ -31,6 +31,14 @@ describe('generic actions', () => {
     expect(invalidateCache('key-1')).toEqual({
       type: types.INVALIDATE_CACHE,
       payload: 'key-1',
+    });
+  });
+
+  it('should construct a valid clearCache object', () => {
+    expect(clearCache()).toEqual({ type: types.CLEAR_CACHE });
+    expect(clearCache('key-2')).toEqual({
+      type: types.CLEAR_CACHE,
+      payload: 'key-2',
     });
   });
 });

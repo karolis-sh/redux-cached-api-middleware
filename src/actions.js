@@ -10,6 +10,11 @@ export const invalidateCache = payload => ({
   payload,
 });
 
+export const clearCache = payload => ({
+  type: types.CLEAR_CACHE,
+  payload,
+});
+
 export const invoke = ({ cache, ...restOptions }) => async (
   dispatch,
   getState
