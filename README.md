@@ -10,6 +10,27 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 
+## Table of Contents
+
+- [Why](#why)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Demos](#demos)
+- [Other Solutions](#other-solutions)
+- [References](#references)
+- [License](#license)
+
+## Why
+
+Caching API responses can greatly increase UX by saving network
+bandwidth and not showing loaders for the same resources all over again while
+user navigates the application. You can also create a fluid returning UX in
+combination with persistance libraries, e.g., [`redux-persist`][redux-persist].
+
+The [`redux-api-middleware`][redux-api-middleware] library is pretty
+standardized and popular way to interact with APIs using redux, that's why it was
+chosen as a base for this package.
+
 ## Installation
 
 1. Install dependencies:
@@ -44,18 +65,15 @@ const store = createStore(
 );
 ```
 
-## Why
+## Usage
 
-Caching API responses can greatly increase UX by saving network
-bandwidth and not showing loaders for the same resources all over again while
-user navigates the application. You can also create a fluid returning UX in
-combination with persistance libraries, e.g., [`redux-persist`][redux-persist].
+`TBD`
 
-The [`redux-api-middleware`][redux-api-middleware] library is pretty
-standardized and popular way to interact with APIs using redux. That's why it was
-chosen as a base for this package.
+## Demos
 
-## Other solutions
+- [Crypto prices][crypto-demo] ([source code][crypto-demo-src])
+
+## Other Solutions
 
 There are other solutions if `redux-cached-api-middleware` doesn't fit your needs:
 
@@ -73,6 +91,8 @@ There are other solutions if `redux-cached-api-middleware` doesn't fit your need
 
 MIT
 
+[crypto-demo]:https://buz-zard.github.io/redux-cached-api-middleware
+[crypto-demo-src]:https://github.com/buz-zard/redux-cached-api-middleware/tree/master/demo
 [redux-thunk]:https://github.com/reduxjs/redux-thunk
 [redux-api-middleware]:https://www.npmjs.com/package/redux-api-middleware
 [redux-persist]:https://www.npmjs.com/package/redux-persist
