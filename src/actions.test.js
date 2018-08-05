@@ -28,6 +28,10 @@ const RESPONSE_403_JSON = {
 describe('generic actions', () => {
   it('should construct a valid invalidateCache object', () => {
     expect(invalidateCache()).toEqual({ type: types.INVALIDATE_CACHE });
+    expect(invalidateCache('key-1')).toEqual({
+      type: types.INVALIDATE_CACHE,
+      payload: 'key-1',
+    });
   });
 });
 

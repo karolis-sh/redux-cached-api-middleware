@@ -5,7 +5,10 @@ import config from './config';
 import * as types from './actionTypes';
 import * as selectors from './selectors';
 
-export const invalidateCache = () => ({ type: types.INVALIDATE_CACHE });
+export const invalidateCache = payload => ({
+  type: types.INVALIDATE_CACHE,
+  payload,
+});
 
 export const invoke = ({ cache, ...restOptions }) => async (
   dispatch,
