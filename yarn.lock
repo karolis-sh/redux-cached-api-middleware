@@ -106,9 +106,9 @@
     lodash "^4.2.0"
     to-fast-properties "^2.0.0"
 
-"@k.sh/eslint-config@1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@k.sh/eslint-config/-/eslint-config-1.1.0.tgz#b7639aebfba7ff0904644fed605f3e627e176e13"
+"@k.sh/eslint-config@1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@k.sh/eslint-config/-/eslint-config-1.2.0.tgz#2925b12469fd7f369034b583a6677cb5a7f5270c"
 
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
