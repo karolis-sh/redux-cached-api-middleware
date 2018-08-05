@@ -27,8 +27,8 @@ class CryptoCard extends React.Component {
 
     if (!data) return null;
 
-    if (data.lastSuccessPayload && data.lastSuccessPayload.success) {
-      const { target, price, change } = data.lastSuccessPayload.ticker;
+    if (data.successPayload && data.successPayload.success) {
+      const { target, price, change } = data.successPayload.ticker;
       const changeNumber = Number(change);
       return (
         <div className="inline-block border-2 border-grey rounded py-2 px-3 m-2 flex-grow">
@@ -69,10 +69,7 @@ class CryptoCard extends React.Component {
       );
     }
 
-    if (
-      data.error ||
-      (data.lastSuccessPayload && !data.lastSuccessPayload.success)
-    ) {
+    if (data.error || (data.successPayload && !data.successPayload.success)) {
       return (
         <div className="inline-block border-2 border-red rounded py-2 px-3 m-2 flex-grow bg-red-lightest">
           <h3>{name}</h3>
