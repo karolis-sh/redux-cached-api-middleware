@@ -21,7 +21,7 @@ export const invoke = ({ cache, ...restOptions }) => async (
 ) => {
   const action = Object.assign(
     { types: [] },
-    config.DEFAULT_EVENT,
+    config.DEFAULT_INVOKE_OPTIONS,
     restOptions
   );
 

@@ -1,5 +1,5 @@
 const DEFAULT_CONFIG = {
-  DEFAULT_EVENT: {},
+  DEFAULT_INVOKE_OPTIONS: {},
   DEFAULT_CACHE_STRATEGY: undefined,
 };
 
@@ -12,11 +12,11 @@ export const resetConfig = () => {
 };
 
 export default {
-  set DEFAULT_EVENT(value) {
-    config.DEFAULT_EVENT = value;
+  set DEFAULT_INVOKE_OPTIONS(value) {
+    config.DEFAULT_INVOKE_OPTIONS = value;
   },
-  get DEFAULT_EVENT() {
-    return config.DEFAULT_EVENT;
+  get DEFAULT_INVOKE_OPTIONS() {
+    return config.DEFAULT_INVOKE_OPTIONS;
   },
   set DEFAULT_CACHE_STRATEGY(value) {
     config.DEFAULT_CACHE_STRATEGY = value;

@@ -95,7 +95,7 @@ describe('invoke base features', () => {
   });
 
   it('should re-use default event', async () => {
-    config.DEFAULT_EVENT = {
+    config.DEFAULT_INVOKE_OPTIONS = {
       method: 'GET',
       endpoint: 'test.me',
       headers: {
@@ -123,7 +123,7 @@ describe('invoke cache features', () => {
   beforeEach(() => {
     resetConfig();
     fetch.resetMocks();
-    config.DEFAULT_EVENT = {
+    config.DEFAULT_INVOKE_OPTIONS = {
       method: 'GET',
       endpoint: 'test.me',
       headers: {
