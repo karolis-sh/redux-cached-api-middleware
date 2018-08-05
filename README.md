@@ -2,12 +2,15 @@
 
 > Redux module that makes working with APIs a breeze.
 
-[![npm version](https://badge.fury.io/js/redux-cached-api-middleware.svg)](https://badge.fury.io/js/redux-cached-api-middleware)
-[![Build Status](https://travis-ci.org/buz-zard/redux-cached-api-middleware.svg?branch=master)](https://travis-ci.org/buz-zard/redux-cached-api-middleware)
-[![codecov.io](https://codecov.io/gh/buz-zard/redux-cached-api-middleware/branch/master/graph/badge.svg)](https://codecov.io/gh/buz-zard/redux-cached-api-middleware)
-[![Greenkeeper badge](https://badges.greenkeeper.io/buz-zard/redux-cached-api-middleware.svg)](https://greenkeeper.io/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
+[![npm version][version-badge]][version]
+[![Build Status][build-badge]][build]
+[![codecov.io][coverage-badge]][coverage]
+[![License: MIT][license-badge]][license]
+[![gzip size][gzip-badge]][unpkg-bundle]
+[![size][size-badge]][unpkg-bundle]
+[![module formats: cjs, es][module-formats-badge]][unpkg-bundle]
+[![Greenkeeper badge][greenkeeper-badge]][greenkeeper]
+[![code style: prettier][code-style-badge]][code-style]
 
 ## Table of Contents
 
@@ -333,6 +336,23 @@ There are other solutions if `redux-cached-api-middleware` doesn't fit your need
 ## License
 
 MIT
+
+[version-badge]: https://badge.fury.io/js/redux-cached-api-middleware.svg
+[version]: https://www.npmjs.com/package/redux-cached-api-middleware
+[build-badge]: https://travis-ci.org/buz-zard/redux-cached-api-middleware.svg?branch=master
+[build]: https://travis-ci.org/buz-zard/redux-cached-api-middleware
+[coverage-badge]: https://codecov.io/gh/buz-zard/redux-cached-api-middleware/branch/master/graph/badge.svg
+[coverage]: https://codecov.io/gh/buz-zard/redux-cached-api-middleware
+[license-badge]: https://img.shields.io/badge/License-MIT-yellow.svg
+[license]: https://opensource.org/licenses/MIT
+[greenkeeper-badge]: https://badges.greenkeeper.io/buz-zard/redux-cached-api-middleware.svg
+[greenkeeper]: https://greenkeeper.io/
+[code-style-badge]: https://img.shields.io/badge/code_style-prettier-ff69b4.svg
+[code-style]: https://github.com/prettier/prettier
+[gzip-badge]: http://img.badgesize.io/https://unpkg.com/redux-cached-api-middleware/lib/index.js?compression=gzip&label=gzip%20size
+[size-badge]: http://img.badgesize.io/https://unpkg.com/redux-cached-api-middleware/lib/index.js?label=size
+[module-formats-badge]: https://img.shields.io/badge/module%20formats-cjs%2C%20es-brightgreen.svg
+[unpkg-bundle]: https://unpkg.com/redux-cached-api-middleware/lib/
 
 [crypto-demo]:https://buz-zard.github.io/redux-cached-api-middleware
 [crypto-demo-src]:https://github.com/buz-zard/redux-cached-api-middleware/tree/master/demo
