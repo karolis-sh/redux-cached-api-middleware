@@ -37,7 +37,7 @@ export default (state = DEFAULT_STATE, { type, payload, meta }) => {
     }
 
     case types.FETCH_START: {
-      const key = meta.cache.key;
+      const key = meta.cache.key; // eslint-disable-line prefer-destructuring
       return {
         ...state,
         [key]: {
@@ -48,7 +48,7 @@ export default (state = DEFAULT_STATE, { type, payload, meta }) => {
     }
 
     case types.FETCH_SUCCESS: {
-      const key = meta.cache.key;
+      const key = meta.cache.key; // eslint-disable-line prefer-destructuring
       if (key in state) {
         return {
           ...state,
@@ -66,7 +66,7 @@ export default (state = DEFAULT_STATE, { type, payload, meta }) => {
     }
 
     case types.FETCH_ERROR: {
-      const key = meta.cache.key;
+      const key = meta.cache.key; // eslint-disable-line prefer-destructuring
       if (key in state) {
         return {
           ...state,

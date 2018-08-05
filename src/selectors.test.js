@@ -5,7 +5,7 @@ import * as selectors from './selectors';
 describe('selectors', () => {
   it('should handle invalid state', () => {
     expect(selectors.getKeyState(null, null)).toBeUndefined();
-    expect(selectors.getResult(null, null)).toEqual({});
+    expect(selectors.getResult(null, null)).toBeUndefined();
   });
 
   it('should return default values for simple fields', () => {

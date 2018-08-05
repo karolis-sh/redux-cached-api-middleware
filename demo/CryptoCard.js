@@ -25,6 +25,8 @@ class CryptoCard extends React.Component {
     const { name, data } = this.props;
     const { now } = this.state;
 
+    if (!data) return null;
+
     if (data.lastSuccessPayload && data.lastSuccessPayload.success) {
       const { target, price, change } = data.lastSuccessPayload.ticker;
       const changeNumber = Number(change);
@@ -85,7 +87,7 @@ class CryptoCard extends React.Component {
 
 CryptoCard.propTypes = {
   name: PropTypes.string.isRequired,
-  data: PropTypes.shape({}).isRequired,
+  data: PropTypes.shape({}),
 };
 
 export default CryptoCard;

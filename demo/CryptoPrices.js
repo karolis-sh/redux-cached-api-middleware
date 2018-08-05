@@ -63,10 +63,10 @@ class CryptoPrices extends React.Component {
 CryptoPrices.propTypes = {
   fetchCoinData: PropTypes.func.isRequired,
   data: PropTypes.shape({
-    btc: PropTypes.shape({}).isRequired,
-    eth: PropTypes.shape({}).isRequired,
-    xrp: PropTypes.shape({}).isRequired,
-    ltc: PropTypes.shape({}).isRequired,
+    btc: PropTypes.shape({}),
+    eth: PropTypes.shape({}),
+    xrp: PropTypes.shape({}),
+    ltc: PropTypes.shape({}),
   }).isRequired,
 };
 

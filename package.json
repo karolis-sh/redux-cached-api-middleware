@@ -5,7 +5,9 @@
   "keywords": [
     "api",
     "cache",
+    "cached",
     "fetch",
+    "offline",
     "pwa",
     "redux",
     "redux-api-middleware",
@@ -90,7 +92,6 @@
     "prop-types": "^15.6.2",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
-    "react-json-view": "^1.19.0",
     "react-redux": "^5.0.7",
     "redux": "^4.0.0",
     "redux-api-middleware": "^2.0.0",

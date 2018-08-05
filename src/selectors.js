@@ -23,7 +23,7 @@ export const getKeyState = (state, key) =>
 
 export const getResult = (state, key) => {
   const keyState = getKeyState(state, key);
-  if (!keyState) return {};
+  if (!keyState) return undefined;
   const result = {
     fetching: keyState.fetching,
     fetched: keyState.fetched,
