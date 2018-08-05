@@ -1,7 +1,5 @@
 # redux-cached-api-middleware
 
-🚧 `WIP` 🚧
-
 > A set of helpers and caching utilities on top of redux-api-middleware to make
 > working with APIs a breeze.
 
@@ -46,20 +44,35 @@ const store = createStore(
 );
 ```
 
+## Why
+
+Caching API responses can greatly increase UX by saving network
+bandwidth and not showing loaders for the same resources all over again while
+user navigates the application. You can also create a fluid returning UX in
+combination with persistance libraries, e.g., [`redux-persist`][redux-persist].
+
+The [`redux-api-middleware`][redux-api-middleware] library is pretty
+standardized and popular way to interact with APIs using redux. That's why it was
+chosen as a base for this package.
+
 ## Other solutions
 
 There are other solutions if `redux-cached-api-middleware` doesn't fit your needs:
 
 - [`redux-cache`](https://github.com/JumboInteractiveLimited/redux-cache)
 
-## Reference
+## References
 
 - [`redux`](https://redux.js.org)
-- [`redux-thunk`](https://github.com/reduxjs/redux-thunk)
-- [`redux-api-middleware`](https://www.npmjs.com/package/redux-api-middleware)
-- [`redux-persist`](https://github.com/rt2zz/redux-persist) - sync redux store
+- [`redux-thunk`][redux-thunk]
+- [`redux-api-middleware`][redux-api-middleware]
+- [`redux-persist`][redux-persist] - sync redux store
   with local (or any other) storage
 
 ## License
 
 MIT
+
+[redux-thunk]:https://github.com/reduxjs/redux-thunk
+[redux-api-middleware]:https://www.npmjs.com/package/redux-api-middleware
+[redux-persist]:https://www.npmjs.com/package/redux-persist
