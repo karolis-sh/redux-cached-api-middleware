@@ -318,6 +318,7 @@ const strategy = api.cache
 
 - [Crypto prices][crypto-demo] ([source code][crypto-demo-src]) - cached
   API requests that sync with localStorage
+- [Demos monorepo][rcam-demos] - various demos using `create-react-app` etc.
 
 ## Other Solutions
 
@@ -356,6 +357,8 @@ MIT
 
 [crypto-demo]:https://buz-zard.github.io/redux-cached-api-middleware
 [crypto-demo-src]:https://github.com/buz-zard/redux-cached-api-middleware/tree/master/demo
+[rcam-demos]: https://github.com/buz-zard/rcam-demos
+
 [redux-thunk]:https://github.com/reduxjs/redux-thunk
 [redux-api-middleware]:https://www.npmjs.com/package/redux-api-middleware
 [redux-api-middleware-options]:https://github.com/agraboso/redux-api-middleware#defining-the-api-call
