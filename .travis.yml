@@ -14,7 +14,8 @@ script:
   - yarn build
   - yarn qa
 after_success:
-  - travis-deploy-once && codecov
+  - npx travis-deploy-once && npx codecov
+  - npx travis-deploy-once && npx semantic-release
 deploy:
   provider: pages
   skip-cleanup: true
