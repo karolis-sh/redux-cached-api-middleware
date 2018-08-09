@@ -59,6 +59,10 @@ or
 $ yarn add redux-cached-api-middleware redux-api-middleware redux-thunk
 ```
 
+\* You can also consume this package via `<script>` tag in browser from [`UMD`][umd-link]
+  build. The UMD builds make redux-cached-api-middleware available as a
+  window.ReduxCachedApiMiddleware global variable.
+
 <!-- markdownlint-disable MD029 -->
 2. Setup `redux`:
 <!-- markdownlint-enable MD029 -->
@@ -360,6 +364,8 @@ MIT
 [size-badge]: http://img.badgesize.io/https://unpkg.com/redux-cached-api-middleware/lib/index.js?label=size
 [module-formats-badge]: https://img.shields.io/badge/module%20formats-umd%2C%20cjs%2C%20es-green.svg
 [unpkg-bundle]: https://unpkg.com/redux-cached-api-middleware/lib/
+
+[umd-link]: https://unpkg.com/redux-cached-api-middleware/umd
 
 [crypto-demo]: https://buz-zard.github.io/redux-cached-api-middleware
 [crypto-demo-src]: https://github.com/buz-zard/redux-cached-api-middleware/tree/master/demo
