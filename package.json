@@ -26,11 +26,13 @@
   "scripts": {
     "build": "run-s build:package build:demo",
     "build:demo": "cross-env NODE_ENV=demo parcel build demo/index.html --no-minify --public-url ${PUBLIC_URL:-/}",
-    "build:package": "rollup -c",
+    "build:package": "run-p build:package:*",
+    "build:package:cjs-umd": "rollup -c",
+    "build:package:es": "babel src --out-dir es --source-maps --ignore *.test.js,__tests__/*",
     "clean": "rimraf es lib .cache dist coverage",
     "develop": "concurrently 'yarn develop:package' 'yarn develop:demo'",
     "develop:demo": "cross-env NODE_ENV=demo DEVELOP=true parcel demo/index.html",
-    "develop:package": "cross-env NODE_ENV=development yarn build:package -w",
+    "develop:package": "cross-env NODE_ENV=development yarn build:package:es -w",
     "format": "prettier --write '**/*.*' && sort-package-json",
     "lint": "run-p lint:*",
     "lint:js": "eslint .",
@@ -58,6 +60,7 @@
   },
   "devDependencies": {
     "@k.sh/eslint-config": "1.2.0",
+    "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
     "babel-eslint": "^8.2.6",
     "babel-jest": "^23.4.2",
@@ -94,7 +97,7 @@
     "react-dom": "^16.4.2",
     "react-redux": "^5.0.7",
     "redux": "^4.0.0",
-    "redux-api-middleware": "^2.0.0",
+    "redux-api-middleware": "^2.3.0",
     "redux-devtools-extension": "^2.13.5",
     "redux-mock-store": "^1.5.3",
     "redux-persist": "^5.10.0",
@@ -121,5 +124,6 @@
     "hooks": {
       "pre-push": "yarn qa"
     }
-  }
+  },
+  "unpkg": "umd/index.js"
 }

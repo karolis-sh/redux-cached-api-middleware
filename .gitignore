@@ -6,6 +6,7 @@ package-lock.json
 # Package build products
 /lib
 /es
+/umd
 /coverage
 
 # Demo build products
