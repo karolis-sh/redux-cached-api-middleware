@@ -103,8 +103,8 @@ class ExampleApp extends React.Component {
     const { result } = this.props;
     if (!result) return null;
     if (result.fetching) return <div>Loading...</div>;
-    if (result.error) return <Error data={result.payload} />;
-    if (result.payload) return <Items data={result.payload} />;
+    if (result.error) return <Error data={result.errorPayload} />;
+    if (result.successPayload) return <Items data={result.successPayload} />;
     return <div>No items</div>;
   }
 }
@@ -114,9 +114,11 @@ ExampleApp.propTypes = {
   result: PropTypes.shape({}),
 };
 
+const CACHE_KEY = 'GET/items';
+
 const enhance = connect(
   state => ({
-    result: api.selectors.getResult(state, 'GET/my-api.com/items'),
+    result: api.selectors.getResult(state, CACHE_KEY),
   }),
   dispatch => ({
     fetchData() {
@@ -126,7 +128,7 @@ const enhance = connect(
           headers: { Accept: 'application/json' },
           endpoint: 'https://my-api.com/items/',
           cache: {
-            key: 'GET/my-api.com/items',
+            key: CACHE_KEY,
             strategy: api.cache
               .get(api.constants.CACHE_TYPES.TTL_SUCCESS)
               .buildStrategy({ ttl: 10 * 60 * 1000 }), // 10 minutes
