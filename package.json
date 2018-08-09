@@ -14,7 +14,7 @@
     "redux-cached-api-middleware",
     "ttl"
   ],
-  "homepage": "https://buz-zard.github.io/redux-cached-api-middleware/",
+  "homepage": "https://github.com/buz-zard/redux-cached-api-middleware",
   "bugs": {
     "url": "https://github.com/buz-zard/redux-cached-api-middleware/issues"
   },
