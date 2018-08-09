@@ -6781,9 +6781,9 @@ parcel-bundler@^1.9.7:
     v8-compile-cache "^2.0.0"
     ws "^5.1.1"
 
-parcel-plugin-sw-precache@^0.5.2:
-  version "0.5.2"
-  resolved "https://registry.yarnpkg.com/parcel-plugin-sw-precache/-/parcel-plugin-sw-precache-0.5.2.tgz#6d3357aafe009b02ce8f83d1f7647e3a9239a60f"
+parcel-plugin-sw-precache@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/parcel-plugin-sw-precache/-/parcel-plugin-sw-precache-1.0.0.tgz#8ac4efbee6a71dff96333077891b24751a91c054"
   dependencies:
     sw-precache "^5.2.1"
     uglify-es "^3.3.9"
