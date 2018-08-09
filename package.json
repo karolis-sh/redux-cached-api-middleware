@@ -97,7 +97,7 @@
     "react-dom": "^16.4.2",
     "react-redux": "^5.0.7",
     "redux": "^4.0.0",
-    "redux-api-middleware": "^2.3.0",
+    "redux-api-middleware": "^3.0.0-beta.4",
     "redux-devtools-extension": "^2.13.5",
     "redux-mock-store": "^1.5.3",
     "redux-persist": "^5.10.0",
@@ -117,7 +117,7 @@
     "whatwg-fetch": "^2.0.4"
   },
   "peerDependencies": {
-    "redux-api-middleware": "^2.0.0",
+    "redux-api-middleware": "^2.0.0 || ^3.0.0",
     "redux-thunk": "^2.0.0"
   },
   "husky": {
