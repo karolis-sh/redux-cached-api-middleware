@@ -10,7 +10,13 @@ export default {
   input: 'src/index.js',
   output: [
     { format: 'cjs', file: pkg.main, sourcemap: true },
-    { format: 'es', file: pkg.module, sourcemap: true },
+    {
+      format: 'umd',
+      file: pkg.unpkg,
+      sourcemap: true,
+      name: 'ReduxCachedApiMiddleware',
+      globals: { 'redux-api-middleware': 'ReduxApiMiddleware' },
+    },
   ],
   plugins: [
     peerDepsExternal(),

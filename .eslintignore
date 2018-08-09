@@ -4,6 +4,7 @@ node_modules
 # Package build products
 /lib
 /es
+/umd
 /coverage
 
 # Demo build products

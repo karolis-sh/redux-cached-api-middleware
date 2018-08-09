@@ -8,7 +8,7 @@
 [![License: MIT][license-badge]][license]
 [![gzip size][gzip-badge]][unpkg-bundle]
 [![size][size-badge]][unpkg-bundle]
-[![module formats: cjs, es][module-formats-badge]][unpkg-bundle]
+[![module formats: umd, cjs and es][module-formats-badge]][unpkg-bundle]
 [![semantic-release][semantic-release-badge]][semantic-release]
 [![Greenkeeper badge][greenkeeper-badge]][greenkeeper]
 [![code style: prettier][code-style-badge]][code-style]
@@ -59,6 +59,10 @@ or
 $ yarn add redux-cached-api-middleware redux-api-middleware redux-thunk
 ```
 
+\* You can also consume this package via `<script>` tag in browser from [`UMD`][umd-link]
+  build. The UMD builds make redux-cached-api-middleware available as a
+  window.ReduxCachedApiMiddleware global variable.
+
 <!-- markdownlint-disable MD029 -->
 2. Setup `redux`:
 <!-- markdownlint-enable MD029 -->
@@ -103,8 +107,8 @@ class ExampleApp extends React.Component {
     const { result } = this.props;
     if (!result) return null;
     if (result.fetching) return <div>Loading...</div>;
-    if (result.error) return <Error data={result.payload} />;
-    if (result.payload) return <Items data={result.payload} />;
+    if (result.error) return <Error data={result.errorPayload} />;
+    if (result.successPayload) return <Items data={result.successPayload} />;
     return <div>No items</div>;
   }
 }
@@ -114,9 +118,11 @@ ExampleApp.propTypes = {
   result: PropTypes.shape({}),
 };
 
+const CACHE_KEY = 'GET/items';
+
 const enhance = connect(
   state => ({
-    result: api.selectors.getResult(state, 'GET/my-api.com/items'),
+    result: api.selectors.getResult(state, CACHE_KEY),
   }),
   dispatch => ({
     fetchData() {
@@ -126,7 +132,7 @@ const enhance = connect(
           headers: { Accept: 'application/json' },
           endpoint: 'https://my-api.com/items/',
           cache: {
-            key: 'GET/my-api.com/items',
+            key: CACHE_KEY,
             strategy: api.cache
               .get(api.constants.CACHE_TYPES.TTL_SUCCESS)
               .buildStrategy({ ttl: 10 * 60 * 1000 }), // 10 minutes
@@ -319,6 +325,7 @@ const strategy = api.cache
 
 - [Crypto prices][crypto-demo] ([source code][crypto-demo-src]) - cached
   API requests that sync with localStorage
+- [Codepen demo][codepen-demo] - GutHub user repository searcher
 - [Demos monorepo][rcam-demos] - various demos using `create-react-app` etc.
 
 ## Other Solutions
@@ -355,14 +362,17 @@ MIT
 [code-style]: https://github.com/prettier/prettier
 [gzip-badge]: http://img.badgesize.io/https://unpkg.com/redux-cached-api-middleware/lib/index.js?compression=gzip&label=gzip%20size
 [size-badge]: http://img.badgesize.io/https://unpkg.com/redux-cached-api-middleware/lib/index.js?label=size
-[module-formats-badge]: https://img.shields.io/badge/module%20formats-cjs%2C%20es-brightgreen.svg
+[module-formats-badge]: https://img.shields.io/badge/module%20formats-umd%2C%20cjs%2C%20es-green.svg
 [unpkg-bundle]: https://unpkg.com/redux-cached-api-middleware/lib/
 
-[crypto-demo]:https://buz-zard.github.io/redux-cached-api-middleware
-[crypto-demo-src]:https://github.com/buz-zard/redux-cached-api-middleware/tree/master/demo
+[umd-link]: https://unpkg.com/redux-cached-api-middleware/umd
+
+[crypto-demo]: https://buz-zard.github.io/redux-cached-api-middleware
+[crypto-demo-src]: https://github.com/buz-zard/redux-cached-api-middleware/tree/master/demo
+[codepen-demo]: https://codepen.io/buz-zard/pen/XByZyP
 [rcam-demos]: https://github.com/buz-zard/rcam-demos
 
-[redux-thunk]:https://github.com/reduxjs/redux-thunk
-[redux-api-middleware]:https://www.npmjs.com/package/redux-api-middleware
-[redux-api-middleware-options]:https://github.com/agraboso/redux-api-middleware#defining-the-api-call
-[redux-persist]:https://www.npmjs.com/package/redux-persist
+[redux-thunk]: https://github.com/reduxjs/redux-thunk
+[redux-api-middleware]: https://www.npmjs.com/package/redux-api-middleware
+[redux-api-middleware-options]: https://github.com/agraboso/redux-api-middleware#defining-the-api-call
+[redux-persist]: https://www.npmjs.com/package/redux-persist
