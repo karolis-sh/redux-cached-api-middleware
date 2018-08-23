@@ -102,7 +102,7 @@
     "rollup-plugin-peer-deps-external": "^2.2.0",
     "rollup-plugin-terser": "^1.0.1",
     "semantic-release": "^15.9.5",
-    "serve": "^9.4.0",
+    "serve": "^10.0.0",
     "sort-package-json": "^1.15.0",
     "tailwindcss": "^0.6.4",
     "travis-deploy-once": "^5.0.2",
