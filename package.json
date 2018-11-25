@@ -119,7 +119,7 @@
     "sort-package-json": "^1.15.0",
     "tailwindcss": "^0.7.0",
     "travis-deploy-once": "^5.0.9",
-    "whatwg-fetch": "^2.0.4"
+    "whatwg-fetch": "^3.0.0"
   },
   "peerDependencies": {
     "redux-api-middleware": "^2.0.0 || ^3.0.0",
