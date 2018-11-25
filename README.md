@@ -60,12 +60,13 @@ $ yarn add redux-cached-api-middleware redux-api-middleware redux-thunk
 ```
 
 \* You can also consume this package via `<script>` tag in browser from [`UMD`][umd-link]
-  build. The UMD builds make redux-cached-api-middleware available as a
-  window.ReduxCachedApiMiddleware global variable.
+build. The UMD builds make redux-cached-api-middleware available as a
+window.ReduxCachedApiMiddleware global variable.
 
 <!-- markdownlint-disable MD029 -->
+
 2. Setup `redux`:
-<!-- markdownlint-enable MD029 -->
+   <!-- markdownlint-enable MD029 -->
 
 ```javascript
 import { createStore, combineReducers, applyMiddleware } from 'redux';
@@ -162,7 +163,7 @@ api.config.DEFAULT_INVOKE_OPTIONS = {
     Accept: 'application/json',
     'Content-Type': 'application/json',
   },
-}
+};
 ```
 
 \* Options get merged using `Object.assign({}, DEFAULT_INVOKE_OPTIONS, invokeOptions)`
@@ -213,7 +214,7 @@ api.actions.invoke({
       .get(api.constants.CACHE_TYPES.TTL_SUCCESS)
       .buildStrategy({ ttl: 600000 }), // 10 minutes
   },
-})
+});
 ```
 
 - `shouldFetch` function - a custom function to defined when resource valid:
@@ -228,9 +229,9 @@ api.actions.invoke({
     shouldFetch({ state: CachedApiState }) {
       // Define your logic when the resource should be re-fetched
       return true;
-    }
+    },
   },
-})
+});
 ```
 
 \* Check [`getResult` selector docs](#getresult) for `CachedApiState` structure.
@@ -310,7 +311,7 @@ const strategy = api.cache
 ```js
 const strategy = api.cache
   .get(api.constants.CACHE_TYPES.TTL_SUCCESS)
-  .buildStrategy({ttl: 1000});
+  .buildStrategy({ ttl: 1000 });
 ```
 
 - `TTL` - uses any previous fetch result if TTL was not reached
@@ -318,7 +319,7 @@ const strategy = api.cache
 ```js
 const strategy = api.cache
   .get(api.constants.CACHE_TYPES.TTL)
-  .buildStrategy({ttl: 1000});
+  .buildStrategy({ ttl: 1000 });
 ```
 
 ## Demos
@@ -364,14 +365,11 @@ MIT
 [size-badge]: http://img.badgesize.io/https://unpkg.com/redux-cached-api-middleware/lib/index.js?label=size
 [module-formats-badge]: https://img.shields.io/badge/module%20formats-umd%2C%20cjs%2C%20es-green.svg
 [unpkg-bundle]: https://unpkg.com/redux-cached-api-middleware/lib/
-
 [umd-link]: https://unpkg.com/redux-cached-api-middleware/umd
-
 [crypto-demo]: https://buz-zard.github.io/redux-cached-api-middleware
 [crypto-demo-src]: https://github.com/buz-zard/redux-cached-api-middleware/tree/master/demo
 [codepen-demo]: https://codepen.io/buz-zard/pen/XByZyP
 [rcam-demos]: https://github.com/buz-zard/rcam-demos
-
 [redux-thunk]: https://github.com/reduxjs/redux-thunk
 [redux-api-middleware]: https://www.npmjs.com/package/redux-api-middleware
 [redux-api-middleware-options]: https://github.com/agraboso/redux-api-middleware#defining-the-api-call

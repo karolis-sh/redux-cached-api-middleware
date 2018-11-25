@@ -1,21 +1,18 @@
 language: node_js
+cache:
+  directories:
+    - ~/.npm
+notifications:
+  email: false
 node_js:
   - '10'
   - '9'
   - '8'
-cache:
-  yarn: true
-  directories:
-    - node_modules
-before_install: yarn global add greenkeeper-lockfile@1
-before_script: greenkeeper-lockfile-update
-after_script: greenkeeper-lockfile-upload
 script:
-  - yarn build
-  - yarn qa
+  - npm run qa
 after_success:
-  - npx travis-deploy-once && npx codecov
-  - npx travis-deploy-once && npx semantic-release
+  - npm run travis-deploy-once "npm run codecov"
+  - npm run travis-deploy-once "npm run semantic-release"
 deploy:
   provider: pages
   skip-cleanup: true

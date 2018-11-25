@@ -52,7 +52,8 @@ class CryptoPrices extends React.Component {
               rel="noopener noreferrer"
             >
               cryptonator API
-            </a>.
+            </a>
+            .
           </div>
         </div>
       </div>

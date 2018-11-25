@@ -21,7 +21,7 @@ export default {
   plugins: [
     peerDepsExternal(),
     resolve(),
-    babel({ exclude: 'node_modules/**', plugins: ['external-helpers'] }),
+    babel({ exclude: 'node_modules/**' }),
     process.env.NODE_ENV !== 'development' && terser(),
     filesize(),
   ],

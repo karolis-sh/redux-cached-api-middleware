@@ -12,7 +12,8 @@ function Footer() {
           className="link"
         >
           Karolis Šarapnickis
-        </a>, {new Date().getFullYear()}. MIT Licensed.
+        </a>
+        , {new Date().getFullYear()}. MIT Licensed.
       </div>
     </footer>
   );

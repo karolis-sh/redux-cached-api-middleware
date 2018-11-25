@@ -1,15 +1,15 @@
 {
-  "presets": [["env", { "loose": true, "modules": false }]],
-  "plugins": ["transform-object-rest-spread"],
+  "presets": [["@babel/preset-env", { "loose": true, "modules": false }]],
+  "plugins": [["@babel/plugin-proposal-object-rest-spread", {}, "package"]],
   "env": {
     "test": {
-      "presets": ["env"]
+      "presets": ["@babel/preset-env"]
     },
     "demo": {
-      "presets": ["env", "react"],
+      "presets": ["@babel/preset-env", "@babel/preset-react"],
       "plugins": [
-        "transform-object-rest-spread",
-        "transform-class-properties",
+        "@babel/plugin-proposal-object-rest-spread",
+        "@babel/plugin-proposal-class-properties",
         ["module-resolver", { "alias": { "redux-cached-api-middleware": "./es" } }]
       ]
     }
