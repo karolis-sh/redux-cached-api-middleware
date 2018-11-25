@@ -9,6 +9,7 @@ node_js:
   - '9'
   - '8'
 script:
+  - npm run build
   - npm run qa
 after_success:
   - npm run travis-deploy-once "npm run codecov"
