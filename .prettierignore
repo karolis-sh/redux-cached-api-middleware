@@ -1,6 +1,7 @@
 *.*
 !*.js
 !*.json
+!*.md
 
 # npm files
 node_modules
