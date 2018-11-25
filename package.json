@@ -30,17 +30,25 @@
     "build:package:cjs-umd": "rollup -c",
     "build:package:es": "babel src --out-dir es --source-maps --ignore *.test.js,__tests__/*",
     "clean": "rimraf es lib .cache dist coverage",
-    "develop": "concurrently 'yarn develop:package' 'yarn develop:demo'",
+    "codecov": "codecov",
+    "develop": "concurrently 'npm run develop:package' 'npm run develop:demo'",
     "develop:demo": "cross-env NODE_ENV=demo DEVELOP=true parcel demo/index.html",
-    "develop:package": "cross-env NODE_ENV=development yarn build:package:es -w",
+    "develop:package": "cross-env NODE_ENV=development npm build:package:es -w",
     "format": "prettier --write '**/*.*' && sort-package-json",
     "lint": "run-p lint:*",
     "lint:js": "eslint .",
     "lint:md": "markdownlint *.md -i node_modules",
     "qa": "run-p test lint",
-    "tdd": "yarn test --watch",
+    "semantic-release": "semantic-release",
+    "tdd": "npm test --watch",
     "test": "jest",
+    "travis-deploy-once": "travis-deploy-once",
     "try-demo": "run-s clean build && serve dist"
+  },
+  "husky": {
+    "hooks": {
+      "pre-push": "npm run qa"
+    }
   },
   "config": {
     "commitizen": {
@@ -101,21 +109,16 @@
     "rollup-plugin-node-resolve": "^3.3.0",
     "rollup-plugin-peer-deps-external": "^2.2.0",
     "rollup-plugin-terser": "^2.0.0",
-    "semantic-release": "^15.9.5",
+    "semantic-release": "^15.12.1",
     "serve": "^10.0.0",
     "sort-package-json": "^1.15.0",
     "tailwindcss": "^0.7.0",
-    "travis-deploy-once": "^5.0.2",
+    "travis-deploy-once": "^5.0.9",
     "whatwg-fetch": "^2.0.4"
   },
   "peerDependencies": {
     "redux-api-middleware": "^2.0.0 || ^3.0.0",
     "redux-thunk": "^2.0.0"
-  },
-  "husky": {
-    "hooks": {
-      "pre-push": "yarn qa"
-    }
   },
   "unpkg": "umd/index.js"
 }
