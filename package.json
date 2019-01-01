@@ -114,7 +114,7 @@
     "rollup-plugin-filesize": "^5.0.0",
     "rollup-plugin-node-resolve": "^4.0.0",
     "rollup-plugin-peer-deps-external": "^2.2.0",
-    "rollup-plugin-terser": "^2.0.0",
+    "rollup-plugin-terser": "^4.0.0",
     "semantic-release": "^15.12.5",
     "serve": "^10.0.0",
     "sort-package-json": "^1.17.0",
