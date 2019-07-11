@@ -118,7 +118,7 @@
     "semantic-release": "^15.12.5",
     "serve": "^11.0.0",
     "sort-package-json": "^1.17.0",
-    "tailwindcss": "^0.7.0",
+    "tailwindcss": "^1.0.5",
     "travis-deploy-once": "^5.0.9",
     "whatwg-fetch": "^3.0.0"
   },
