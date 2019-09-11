@@ -10,7 +10,6 @@
 [![size][size-badge]][unpkg-bundle]
 [![module formats: umd, cjs and es][module-formats-badge]][unpkg-bundle]
 [![semantic-release][semantic-release-badge]][semantic-release]
-[![Greenkeeper badge][greenkeeper-badge]][greenkeeper]
 [![code style: prettier][code-style-badge]][code-style]
 
 ## Table of Contents
@@ -357,8 +356,6 @@ MIT
 [license]: https://opensource.org/licenses/MIT
 [semantic-release-badge]: https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg
 [semantic-release]: https://github.com/semantic-release/semantic-release
-[greenkeeper-badge]: https://badges.greenkeeper.io/buz-zard/redux-cached-api-middleware.svg
-[greenkeeper]: https://greenkeeper.io/
 [code-style-badge]: https://img.shields.io/badge/code_style-prettier-ff69b4.svg
 [code-style]: https://github.com/prettier/prettier
 [gzip-badge]: http://img.badgesize.io/https://unpkg.com/redux-cached-api-middleware/lib/index.js?compression=gzip&label=gzip%20size

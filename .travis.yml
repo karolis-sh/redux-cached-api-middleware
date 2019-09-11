@@ -6,11 +6,7 @@ notifications:
   email: false
 node_js:
   - '10'
-  - '9'
   - '8'
-before_install: if [[ `npm -v` != 6* ]]; then npm install -g npm@6; fi
-# Until https://github.com/greenkeeperio/greenkeeper-lockfile/issues/156 is resolved
-install: case $TRAVIS_BRANCH in greenkeeper*) npm i;; *) npm ci;; esac;
 script:
   - npm run build
   - npm run qa
