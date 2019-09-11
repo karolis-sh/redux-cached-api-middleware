@@ -11,10 +11,10 @@ function Header() {
 
           <a
             className="github-button"
-            href="https://github.com/buz-zard/redux-cached-api-middleware"
+            href="https://github.com/karolis-sh/redux-cached-api-middleware"
             data-icon="octicon-star"
             data-show-count="true"
-            aria-label="Star buz-zard/redux-cached-api-middleware on GitHub"
+            aria-label="Star karolis-sh/redux-cached-api-middleware on GitHub"
           >
             Star
           </a>

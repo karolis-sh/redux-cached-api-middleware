@@ -348,10 +348,10 @@ MIT
 
 [version-badge]: https://badge.fury.io/js/redux-cached-api-middleware.svg
 [version]: https://www.npmjs.com/package/redux-cached-api-middleware
-[build-badge]: https://travis-ci.org/buz-zard/redux-cached-api-middleware.svg?branch=master
-[build]: https://travis-ci.org/buz-zard/redux-cached-api-middleware
-[coverage-badge]: https://codecov.io/gh/buz-zard/redux-cached-api-middleware/branch/master/graph/badge.svg
-[coverage]: https://codecov.io/gh/buz-zard/redux-cached-api-middleware
+[build-badge]: https://travis-ci.org/karolis-sh/redux-cached-api-middleware.svg?branch=master
+[build]: https://travis-ci.org/karolis-sh/redux-cached-api-middleware
+[coverage-badge]: https://codecov.io/gh/karolis-sh/redux-cached-api-middleware/branch/master/graph/badge.svg
+[coverage]: https://codecov.io/gh/karolis-sh/redux-cached-api-middleware
 [license-badge]: https://img.shields.io/badge/License-MIT-yellow.svg
 [license]: https://opensource.org/licenses/MIT
 [semantic-release-badge]: https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg
@@ -363,10 +363,10 @@ MIT
 [module-formats-badge]: https://img.shields.io/badge/module%20formats-umd%2C%20cjs%2C%20es-green.svg
 [unpkg-bundle]: https://unpkg.com/redux-cached-api-middleware/lib/
 [umd-link]: https://unpkg.com/redux-cached-api-middleware/umd
-[crypto-demo]: https://buz-zard.github.io/redux-cached-api-middleware
-[crypto-demo-src]: https://github.com/buz-zard/redux-cached-api-middleware/tree/master/demo
-[codepen-demo]: https://codepen.io/buz-zard/pen/XByZyP
-[rcam-demos]: https://github.com/buz-zard/rcam-demos
+[crypto-demo]: https://karolis-sh.github.io/redux-cached-api-middleware
+[crypto-demo-src]: https://github.com/karolis-sh/redux-cached-api-middleware/tree/master/demo
+[codepen-demo]: https://codepen.io/karolis-sh/pen/XByZyP
+[rcam-demos]: https://github.com/karolis-sh/rcam-demos
 [redux-thunk]: https://github.com/reduxjs/redux-thunk
 [redux-api-middleware]: https://www.npmjs.com/package/redux-api-middleware
 [redux-api-middleware-options]: https://github.com/agraboso/redux-api-middleware#defining-the-api-call

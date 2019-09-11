@@ -34,7 +34,7 @@ class CryptoPrices extends React.Component {
             Data is gathered via separate API request for each coin. Requests
             are cached (on the client side) for 30 seconds. Check{' '}
             <a
-              href="https://github.com/buz-zard/redux-cached-api-middleware/tree/master/demo"
+              href="https://github.com/karolis-sh/redux-cached-api-middleware/tree/master/demo"
               className="link"
               target="_blank"
               rel="noopener noreferrer"

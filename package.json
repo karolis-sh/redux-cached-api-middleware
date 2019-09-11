@@ -14,11 +14,11 @@
     "redux-cached-api-middleware",
     "ttl"
   ],
-  "homepage": "https://github.com/buz-zard/redux-cached-api-middleware",
+  "homepage": "https://github.com/karolis-sh/redux-cached-api-middleware",
   "bugs": {
-    "url": "https://github.com/buz-zard/redux-cached-api-middleware/issues"
+    "url": "https://github.com/karolis-sh/redux-cached-api-middleware/issues"
   },
-  "repository": "git@github.com:buz-zard/redux-cached-api-middleware.git",
+  "repository": "git@github.com:karolis-sh/redux-cached-api-middleware.git",
   "license": "MIT",
   "author": "Karolis Šarapnickis <pastas.k@gmail.com>",
   "main": "lib/index.js",
