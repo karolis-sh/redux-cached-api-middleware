@@ -42,6 +42,8 @@
     "lint:js": "eslint .",
     "lint:md": "markdownlint-cli2 '**/*.md' '!node_modules' '!**/node_modules' '!**/CHANGELOG.md'",
     "qa": "run-p test lint",
+    "prerelease": "git checkout master && git pull && yarn",
+    "release": "run-s clean build qa && standard-version --no-verify && git push --follow-tags origin master --no-verify && yarn publish",
     "test": "jest",
     "try": "run-s clean build && serve dist"
   },
