@@ -5,25 +5,22 @@ import config from './config';
 import * as types from './actionTypes';
 import * as selectors from './selectors';
 
-export const invalidateCache = payload => ({
+export const invalidateCache = (payload) => ({
   type: types.INVALIDATE_CACHE,
   payload,
 });
 
-export const clearCache = payload => ({
+export const clearCache = (payload) => ({
   type: types.CLEAR_CACHE,
   payload,
 });
 
-export const invoke = ({ cache, ...restOptions }) => async (
-  dispatch,
-  getState
-) => {
-  const action = Object.assign(
-    { types: [] },
-    config.DEFAULT_INVOKE_OPTIONS,
-    restOptions
-  );
+export const invoke = ({ cache, ...restOptions }) => async (dispatch, getState) => {
+  const action = {
+    types: [],
+    ...config.DEFAULT_INVOKE_OPTIONS,
+    ...restOptions,
+  };
 
   if (cache && cache.key) {
     const cacheStrategy = cache.strategy || config.DEFAULT_CACHE_STRATEGY;

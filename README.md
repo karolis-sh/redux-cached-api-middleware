@@ -1,17 +1,12 @@
 # redux-cached-api-middleware
 
-> Redux module that makes working with APIs a breeze.
-
 [![npm version][version-badge]][version]
-[![Build Status][build-badge]][build]
-[![codecov.io][coverage-badge]][coverage]
+![Node.js CI](https://github.com/karolis-sh/redux-cached-api-middleware/workflows/Node.js%20CI/badge.svg)
 [![License: MIT][license-badge]][license]
 [![gzip size][gzip-badge]][unpkg-bundle]
-[![size][size-badge]][unpkg-bundle]
-[![module formats: umd, cjs and es][module-formats-badge]][unpkg-bundle]
-[![semantic-release][semantic-release-badge]][semantic-release]
-[![Greenkeeper badge][greenkeeper-badge]][greenkeeper]
 [![code style: prettier][code-style-badge]][code-style]
+
+> Redux module that makes working with APIs a breeze.
 
 ## Table of Contents
 
@@ -66,7 +61,8 @@ window.ReduxCachedApiMiddleware global variable.
 <!-- markdownlint-disable MD029 -->
 
 2. Setup `redux`:
-   <!-- markdownlint-enable MD029 -->
+
+<!-- markdownlint-enable MD029 -->
 
 ```javascript
 import { createStore, combineReducers, applyMiddleware } from 'redux';
@@ -116,16 +112,23 @@ class ExampleApp extends React.Component {
 
 ExampleApp.propTypes = {
   fetchData: PropTypes.func.isRequired,
-  result: PropTypes.shape({}),
+  result: PropTypes.shape({
+    fetching: PropTypes.bool,
+    fetched: PropTypes.bool,
+    error: PropTypes.bool,
+    timestamp: PropTypes.number,
+    successPayload: PropTypes.any,
+    errorPayload: PropTypes.any,
+  }),
 };
 
 const CACHE_KEY = 'GET/items';
 
 const enhance = connect(
-  state => ({
+  (state) => ({
     result: api.selectors.getResult(state, CACHE_KEY),
   }),
-  dispatch => ({
+  (dispatch) => ({
     fetchData() {
       return dispatch(
         api.actions.invoke({
@@ -187,9 +190,7 @@ api.config.DEFAULT_CACHE_STRATEGY = api.cache
 Call API endpoints anywhere and retrieve data with redux selectors.
 
 ```js
-dispatch(api.actions.invoke(
-  options: InvokeOptions,
-));
+dispatch(api.actions.invoke((options: InvokeOptions)));
 ```
 
 The `invoke` action response will be `undefined` if there was a valid cached
@@ -210,9 +211,9 @@ api.actions.invoke({
   endpoint: 'https://my-api.com/items/',
   cache: {
     key: 'GET/my-api.com/items',
-    strategy: api.cache
-      .get(api.constants.CACHE_TYPES.TTL_SUCCESS)
-      .buildStrategy({ ttl: 600000 }), // 10 minutes
+    strategy: api.cache.get(api.constants.CACHE_TYPES.TTL_SUCCESS).buildStrategy({
+      ttl: 600000, // 10 minutes
+    }),
   },
 });
 ```
@@ -243,9 +244,11 @@ fetch requests - which can restore your app in a broken state. You can
 invalidate all the cached redux state, or selectively with `cacheKey`.
 
 ```js
-dispatch(api.actions.invalidateCache(
-  cacheKey: ?string // unique cache key
-));
+dispatch(
+  api.actions.invalidateCache(
+    (cacheKey: ?string) // unique cache key
+  )
+);
 ```
 
 #### `clearCache()`
@@ -253,9 +256,11 @@ dispatch(api.actions.invalidateCache(
 Clear all the cached redux state, or selectively with `cacheKey`.
 
 ```js
-dispatch(api.actions.clearCache(
-  cacheKey: ?string // unique cache key
-));
+dispatch(
+  api.actions.clearCache(
+    (cacheKey: ?string) // unique cache key
+  )
+);
 ```
 
 ### Redux Selectors
@@ -266,8 +271,8 @@ Select all information about API request.
 
 ```js
 const response: ?CachedApiState = api.selectors.getResult(
-  state: Object, // redux state
-  cacheKey: string // unique cache key
+  (state: Object), // redux state
+  (cacheKey: string) // unique cache key
 );
 ```
 
@@ -292,34 +297,30 @@ initialized yet.
 - `SIMPLE_SUCCESS` - uses previous successful fetch result
 
 ```js
-const strategy = api.cache
-  .get(api.constants.CACHE_TYPES.SIMPLE_SUCCESS)
-  .buildStrategy();
+const strategy = api.cache.get(api.constants.CACHE_TYPES.SIMPLE_SUCCESS).buildStrategy();
 ```
 
 - `SIMPLE` - uses any previous payload fetch result
 
 ```js
-const strategy = api.cache
-  .get(api.constants.CACHE_TYPES.SIMPLE)
-  .buildStrategy();
+const strategy = api.cache.get(api.constants.CACHE_TYPES.SIMPLE).buildStrategy();
 ```
 
 - `TTL_SUCCESS` - uses previous successful fetch result if time to live (TTL)
   was not reached
 
 ```js
-const strategy = api.cache
-  .get(api.constants.CACHE_TYPES.TTL_SUCCESS)
-  .buildStrategy({ ttl: 1000 });
+const strategy = api.cache.get(api.constants.CACHE_TYPES.TTL_SUCCESS).buildStrategy({
+  ttl: 1000,
+});
 ```
 
 - `TTL` - uses any previous fetch result if TTL was not reached
 
 ```js
-const strategy = api.cache
-  .get(api.constants.CACHE_TYPES.TTL)
-  .buildStrategy({ ttl: 1000 });
+const strategy = api.cache.get(api.constants.CACHE_TYPES.TTL).buildStrategy({
+  ttl: 1000,
+});
 ```
 
 ## Demos
@@ -343,33 +344,19 @@ There are other solutions if `redux-cached-api-middleware` doesn't fit your need
 - [`redux-persist`][redux-persist] - sync redux store
   with local (or any other) storage
 
-## License
-
-MIT
-
 [version-badge]: https://badge.fury.io/js/redux-cached-api-middleware.svg
 [version]: https://www.npmjs.com/package/redux-cached-api-middleware
-[build-badge]: https://travis-ci.org/buz-zard/redux-cached-api-middleware.svg?branch=master
-[build]: https://travis-ci.org/buz-zard/redux-cached-api-middleware
-[coverage-badge]: https://codecov.io/gh/buz-zard/redux-cached-api-middleware/branch/master/graph/badge.svg
-[coverage]: https://codecov.io/gh/buz-zard/redux-cached-api-middleware
 [license-badge]: https://img.shields.io/badge/License-MIT-yellow.svg
 [license]: https://opensource.org/licenses/MIT
-[semantic-release-badge]: https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg
-[semantic-release]: https://github.com/semantic-release/semantic-release
-[greenkeeper-badge]: https://badges.greenkeeper.io/buz-zard/redux-cached-api-middleware.svg
-[greenkeeper]: https://greenkeeper.io/
 [code-style-badge]: https://img.shields.io/badge/code_style-prettier-ff69b4.svg
 [code-style]: https://github.com/prettier/prettier
 [gzip-badge]: http://img.badgesize.io/https://unpkg.com/redux-cached-api-middleware/lib/index.js?compression=gzip&label=gzip%20size
-[size-badge]: http://img.badgesize.io/https://unpkg.com/redux-cached-api-middleware/lib/index.js?label=size
-[module-formats-badge]: https://img.shields.io/badge/module%20formats-umd%2C%20cjs%2C%20es-green.svg
 [unpkg-bundle]: https://unpkg.com/redux-cached-api-middleware/lib/
 [umd-link]: https://unpkg.com/redux-cached-api-middleware/umd
-[crypto-demo]: https://buz-zard.github.io/redux-cached-api-middleware
-[crypto-demo-src]: https://github.com/buz-zard/redux-cached-api-middleware/tree/master/demo
-[codepen-demo]: https://codepen.io/buz-zard/pen/XByZyP
-[rcam-demos]: https://github.com/buz-zard/rcam-demos
+[crypto-demo]: https://redux-cached-api-middleware-demo.netlify.app
+[crypto-demo-src]: https://github.com/karolis-sh/redux-cached-api-middleware/tree/master/demo
+[codepen-demo]: https://codepen.io/karolis-sh/pen/XByZyP
+[rcam-demos]: https://github.com/karolis-sh/rcam-demos
 [redux-thunk]: https://github.com/reduxjs/redux-thunk
 [redux-api-middleware]: https://www.npmjs.com/package/redux-api-middleware
 [redux-api-middleware-options]: https://github.com/agraboso/redux-api-middleware#defining-the-api-call

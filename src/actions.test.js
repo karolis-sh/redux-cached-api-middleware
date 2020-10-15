@@ -106,9 +106,7 @@ describe('invoke base features', () => {
     const store = mockStore({});
     const apiResponse = { hello: 'world' };
     fetch.mockResponseOnce(JSON.stringify(apiResponse), RESPONSE_200_JSON);
-    await store.dispatch(
-      invoke({ method: 'POST', types: ['REQUEST', 'SUCCESS', 'FAILURE'] })
-    );
+    await store.dispatch(invoke({ method: 'POST', types: ['REQUEST', 'SUCCESS', 'FAILURE'] }));
     expect(store.getActions()).toEqual([
       { type: 'REQUEST' },
       { type: 'SUCCESS', payload: apiResponse },
@@ -219,9 +217,7 @@ describe('invoke cache features', () => {
       successPayload: { hello: 'world' },
       errorPayload: null,
     };
-    config.DEFAULT_CACHE_STRATEGY = cache
-      .get(CACHE_TYPES.SIMPLE)
-      .buildStrategy();
+    config.DEFAULT_CACHE_STRATEGY = cache.get(CACHE_TYPES.SIMPLE).buildStrategy();
     const store = mockStore({ [NAME]: { [cacheKey]: keyState } });
     const shouldFetchMock = jest.fn();
     const cacheOption = { key: cacheKey, shouldFetch: shouldFetchMock };

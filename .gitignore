@@ -1,17 +1,14 @@
 # npm files
 node_modules
+package-lock.json
 *.log*
 
-# Package build products
+# project
 /lib
 /es
 /umd
 /coverage
 
-# Demo build products
+# demo
 /.cache
 /dist
-
-# other
-.vscode
-*.*~
