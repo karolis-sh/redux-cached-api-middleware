@@ -112,7 +112,14 @@ class ExampleApp extends React.Component {
 
 ExampleApp.propTypes = {
   fetchData: PropTypes.func.isRequired,
-  result: PropTypes.shape({}),
+  result: PropTypes.shape({
+    fetching: PropTypes.bool,
+    fetched: PropTypes.bool,
+    error: PropTypes.bool,
+    timestamp: PropTypes.number,
+    successPayload: PropTypes.any,
+    errorPayload: PropTypes.any,
+  }),
 };
 
 const CACHE_KEY = 'GET/items';
