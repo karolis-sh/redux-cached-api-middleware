@@ -1,4 +1,4 @@
-export const validateCacheModule = item => {
+export const validateCacheModule = (item) => {
   if (item) {
     const { type, buildStrategy, shouldFetch } = item;
     if (

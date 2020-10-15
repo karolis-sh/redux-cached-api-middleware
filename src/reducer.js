@@ -23,12 +23,10 @@ export default (state = DEFAULT_STATE, { type, payload, meta }) => {
     }
 
     case types.INVALIDATE_CACHE: {
-      const invalidStateKeys = Object.keys(state).filter(
-        item => state[item].fetching
-      );
+      const invalidStateKeys = Object.keys(state).filter((item) => state[item].fetching);
       if (invalidStateKeys.length) {
         const newState = { ...state };
-        invalidStateKeys.forEach(key => {
+        invalidStateKeys.forEach((key) => {
           newState[key].fetching = false;
         });
         return newState;
@@ -37,7 +35,7 @@ export default (state = DEFAULT_STATE, { type, payload, meta }) => {
     }
 
     case types.FETCH_START: {
-      const key = meta.cache.key; // eslint-disable-line prefer-destructuring
+      const { key } = meta.cache;
       return {
         ...state,
         [key]: {
@@ -48,7 +46,7 @@ export default (state = DEFAULT_STATE, { type, payload, meta }) => {
     }
 
     case types.FETCH_SUCCESS: {
-      const key = meta.cache.key; // eslint-disable-line prefer-destructuring
+      const { key } = meta.cache;
       if (key in state) {
         return {
           ...state,
@@ -66,7 +64,7 @@ export default (state = DEFAULT_STATE, { type, payload, meta }) => {
     }
 
     case types.FETCH_ERROR: {
-      const key = meta.cache.key; // eslint-disable-line prefer-destructuring
+      const { key } = meta.cache;
       if (key in state) {
         return {
           ...state,

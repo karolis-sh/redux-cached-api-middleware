@@ -31,8 +31,8 @@ class CryptoPrices extends React.Component {
         </div>
         <div className="mx-2 my-6">
           <div className="mb-4">
-            Data is gathered via separate API request for each coin. Requests
-            are cached (on the client side) for 30 seconds. Check{' '}
+            Data is gathered via separate API request for each coin. Requests are cached (on the
+            client side) for 30 seconds. Check{' '}
             <a
               href="https://github.com/karolis-sh/redux-cached-api-middleware/tree/master/demo"
               className="link"
@@ -82,7 +82,7 @@ const LTC_URL = `${API_BASE_URL}ticker/ltc-usd`;
 const LTC_CACHE_KEY = 'GET/ltc-usd';
 
 const enhance = connect(
-  state => ({
+  (state) => ({
     data: {
       btc: api.selectors.getResult(state, BTC_CACHE_KEY),
       eth: api.selectors.getResult(state, ETH_CACHE_KEY),
@@ -90,7 +90,7 @@ const enhance = connect(
       ltc: api.selectors.getResult(state, LTC_CACHE_KEY),
     },
   }),
-  dispatch => ({
+  (dispatch) => ({
     dispatch,
     fetchCoinData: () => {
       const fetchCoinData = (url, cacheKey) =>

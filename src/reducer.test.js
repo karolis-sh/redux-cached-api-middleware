@@ -49,9 +49,7 @@ describe('generic actions', () => {
   });
 
   it('should not remove valid state with INVALIDATE_CACHE', () => {
-    expect(reducer(otherState, { type: types.INVALIDATE_CACHE })).toEqual(
-      otherState
-    );
+    expect(reducer(otherState, { type: types.INVALIDATE_CACHE })).toEqual(otherState);
   });
 
   it('should remove key state when restored as fetching with INVALIDATE_CACHE', () => {
@@ -84,9 +82,7 @@ describe('FETCH_START', () => {
   const otherState = { 'POST/stuff': { hello: 'world' } };
 
   it('should initialize on fetching start', () => {
-    expect(
-      reducer(otherState, { type: types.FETCH_START, meta: { cache: { key } } })
-    ).toEqual({
+    expect(reducer(otherState, { type: types.FETCH_START, meta: { cache: { key } } })).toEqual({
       ...otherState,
       [key]: {
         fetching: true,

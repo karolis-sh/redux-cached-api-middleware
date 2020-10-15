@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import distanceInWordsStrict from 'date-fns/distance_in_words_strict';
+import formatDistanceStrict from 'date-fns/formatDistanceStrict';
 import cx from 'classnames';
 
-const mapCurrency = value => ({ USD: '$', EUR: '€' }[value] || value);
+const mapCurrency = (value) => ({ USD: '$', EUR: '€' }[value] || value);
 
 class CryptoCard extends React.Component {
   constructor(props) {
@@ -33,8 +33,7 @@ class CryptoCard extends React.Component {
       return (
         <div className="inline-block border-2 border-grey rounded py-2 px-3 m-2 flex-grow">
           <h3>
-            {name}{' '}
-            {data.fetching && <div className="loader inline-block ml-1" />}
+            {name} {data.fetching && <div className="loader inline-block ml-1" />}
           </h3>
           <div className="mt-1 mb-2">
             {mapCurrency(target)}
@@ -52,7 +51,7 @@ class CryptoCard extends React.Component {
             </span>
           </div>
           <div className="text-grey text-xs">
-            Updated {distanceInWordsStrict(data.timestamp, now)} ago
+            Updated {formatDistanceStrict(data.timestamp, now)} ago
           </div>
         </div>
       );
@@ -84,7 +83,20 @@ class CryptoCard extends React.Component {
 
 CryptoCard.propTypes = {
   name: PropTypes.string.isRequired,
-  data: PropTypes.shape({}),
+  data: PropTypes.shape({
+    fetching: PropTypes.bool,
+    fetched: PropTypes.bool,
+    error: PropTypes.bool,
+    timestamp: PropTypes.number,
+    successPayload: PropTypes.shape({
+      success: PropTypes.bool,
+      ticker: PropTypes.shape({
+        target: PropTypes.string,
+        price: PropTypes.string,
+        change: PropTypes.string,
+      }),
+    }),
+  }),
 };
 
 export default CryptoCard;

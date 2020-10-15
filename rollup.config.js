@@ -1,6 +1,6 @@
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
-import resolve from 'rollup-plugin-node-resolve';
-import babel from 'rollup-plugin-babel';
+import { nodeResolve } from '@rollup/plugin-node-resolve';
+import babel from '@rollup/plugin-babel';
 import { terser } from 'rollup-plugin-terser';
 import filesize from 'rollup-plugin-filesize';
 
@@ -9,7 +9,7 @@ import pkg from './package.json';
 export default {
   input: 'src/index.js',
   output: [
-    { format: 'cjs', file: pkg.main, sourcemap: true },
+    { format: 'cjs', file: pkg.main, sourcemap: true, exports: 'default' },
     {
       format: 'umd',
       file: pkg.unpkg,
@@ -20,8 +20,8 @@ export default {
   ],
   plugins: [
     peerDepsExternal(),
-    resolve(),
-    babel({ exclude: 'node_modules/**' }),
+    nodeResolve(),
+    babel({ exclude: 'node_modules/**', babelHelpers: 'bundled' }),
     process.env.NODE_ENV !== 'development' && terser(),
     filesize(),
   ],

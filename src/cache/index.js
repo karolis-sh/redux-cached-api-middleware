@@ -4,7 +4,7 @@ import * as ttl from './ttl';
 import * as ttlSuccess from './ttlSuccess';
 
 export default {
-  get: type => {
+  get: (type) => {
     switch (type) {
       case simple.type:
         return simple;

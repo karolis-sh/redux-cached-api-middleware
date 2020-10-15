@@ -1,19 +1,21 @@
-*.*
+*
+!*/
 !*.js
 !*.json
 !*.md
+!*.yml
 
 # npm files
 node_modules
 package.json
 package-lock.json
 
-# Package build products
+# project
 /lib
 /es
 /umd
 /coverage
 
-# Demo build products
+# demo
 /.cache
 /dist

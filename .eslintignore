@@ -1,12 +1,12 @@
 # npm files
 node_modules
 
-# Package build products
+# project
 /lib
 /es
 /umd
 /coverage
 
-# Demo build products
+# demo
 /.cache
 /dist

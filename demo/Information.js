@@ -14,10 +14,7 @@ function Information() {
     </button>
   );
   return (
-    <div
-      className="flex bg-indigo text-white text-sm px-4 py-3 sm:mt-4 mb-4"
-      role="alert"
-    >
+    <div className="flex bg-indigo text-white text-sm px-4 py-3 sm:mt-4 mb-4" role="alert">
       <div>
         <svg
           className="fill-current w-4 h-4 mr-2"
@@ -29,15 +26,13 @@ function Information() {
       </div>
       <div>
         <p>
-          This is a React + Redux PWA demo application. The Redux state is
-          synced with localStorage, so all of the resources and API data can be
-          accessed while in offline mode.
+          This is a React + Redux PWA demo application. The Redux state is synced with localStorage,
+          so all of the resources and API data can be accessed while in offline mode.
         </p>
         <br />
         <p>
-          The development mode is enabled, so you can open developer tools and
-          check React, Redux state etc. Also you can click {refreshButton} to
-          clear localStorage and re-load the page.
+          The development mode is enabled, so you can open developer tools and check React, Redux
+          state etc. Also you can click {refreshButton} to clear localStorage and re-load the page.
         </p>
       </div>
     </div>
